@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 72" role="img" aria-label="TCGA">
+  <rect width="320" height="72" fill="#fff"/>
+  <text x="18" y="38" font-family="Arial, Helvetica, sans-serif" font-size="30" font-weight="800" fill="#00843D">TCGA</text>
+  <text x="18" y="56" font-family="Arial, Helvetica, sans-serif" font-size="10" font-weight="600" fill="#00843D">The Cancer Genome Atlas</text>
+</svg>

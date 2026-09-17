@@ -13,7 +13,7 @@
 <script src="data/network_dashboard.js"></script>
 <script src="assets/repo-logos/logos.js"></script>
 <style>
-  @import url('https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=DM+Sans:wght@300;400;500;600&display=swap');
+  @import url('https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=DM+Sans:wght@300;400;500;600;700&display=swap');
 
   * { box-sizing: border-box; margin: 0; padding: 0; }
 
@@ -25,70 +25,131 @@ body {
     min-height: 100vh;
   }
 
-  /* ─── HEADER ─── */
+  /* ─── HEADER (iCellR2-style) ─── */
   .header {
-    background: linear-gradient(135deg, #57068C 0%, #330662 100%);
-    color: white;
-    border-bottom: none;
+    --nyu: #57068c;
+    --nyu-deep: #3b0764;
+    --nyu-ink: #2a0448;
+    background: linear-gradient(90deg, var(--nyu-ink) 0%, var(--nyu-deep) 42%, var(--nyu) 100%);
+    color: #ffffff;
     position: relative;
     overflow: hidden;
-  }
-  .header::before {
-    content: '';
-    position: absolute;
-    top: -60px; right: -60px;
-    width: 280px; height: 280px;
-    background: rgba(255,255,255,0.04);
-    border-radius: 50%;
+    border-bottom: 1px solid #2a0448;
   }
   .header-inner {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 24px 48px 20px;
+    display: grid;
+    grid-template-columns: minmax(300px, 0.95fr) minmax(280px, 1.05fr);
+    align-items: stretch;
     position: relative;
     z-index: 1;
+    min-height: 248px;
+    padding: 0;
   }
-  .header-left { display: flex; align-items: center; gap: 18px; }
-  .header-nyu-badge {
-    width: 46px; height: 46px;
-    background: white;
-    border-radius: 10px;
-    display: flex; align-items: center; justify-content: center;
-    flex-shrink: 0;
+  .header-left {
+    max-width: none;
+    padding: 32px 36px 28px 48px;
+    background: transparent;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    position: relative;
+    z-index: 2;
+    gap: 0;
   }
-  .header-nyu-badge span {
-    font-family: 'Syne', sans-serif;
-    font-weight: 800; font-size: 0.9rem;
-    color: #57068C; letter-spacing: -0.02em;
+  .header-visual {
+    position: relative;
+    min-height: 248px;
+    background: transparent;
+    overflow: hidden;
+    -webkit-mask-image: linear-gradient(90deg, transparent 0%, #000 18%, #000 100%);
+    mask-image: linear-gradient(90deg, transparent 0%, #000 18%, #000 100%);
+  }
+  .header-art {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center 68%;
+    pointer-events: none;
+    user-select: none;
+  }
+  .header-badge {
+    width: 36px; height: 36px;
+    background: rgba(255,255,255,0.12);
+    border: 1px solid rgba(255,255,255,0.22);
+    border-radius: 8px;
+    display: inline-flex; align-items: center; justify-content: center;
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 600; font-size: 0.72rem;
+    color: #f3e8ff;
+    margin-bottom: 12px;
   }
   .header-title {
-    font-family: 'Syne', sans-serif;
-    font-size: 1.45rem; font-weight: 700; line-height: 1.2;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 1.55rem; font-weight: 600; line-height: 1.3;
+    letter-spacing: -0.01em;
+    color: #ffffff;
   }
   .header-title span {
-    color: rgba(255,255,255,0.5); font-weight: 400; font-size: 0.82rem;
-    display: block; margin-top: 2px;
-    font-family: 'Inter', sans-serif; letter-spacing: 0.05em;
-    text-transform: uppercase;
+    display: block;
+    margin-top: 7px;
+    color: #e9d5ff;
+    font-weight: 400; font-size: 0.88rem;
+    font-family: 'DM Sans', sans-serif;
+    letter-spacing: 0;
+    text-transform: none;
   }
-  .header-stats { display: flex; gap: 0; text-align: center; }
-  .hstat { padding: 0 24px; border-left: 1px solid rgba(255,255,255,0.18); }
-  .hstat:first-child { border-left: none; }
-  .hstat-num { font-family: 'Syne', sans-serif; font-size: 2rem; font-weight: 800; color: white; line-height: 1; }
-  .hstat-label { font-size: 0.65rem; opacity: 0.55; text-transform: uppercase; letter-spacing: 0.1em; margin-top: 3px; font-family: 'Inter', sans-serif; }
+  .header-quote {
+    margin-top: 12px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.92rem;
+    font-weight: 400;
+    color: #f3e8ff;
+    line-height: 1.55;
+    max-width: 32rem;
+    opacity: 0.95;
+  }
+  .header-stats {
+    display: flex;
+    gap: 0;
+    text-align: center;
+    margin-top: 18px;
+    flex-wrap: wrap;
+  }
+  .hstat { padding: 0 14px; border-left: 1px solid rgba(255,255,255,0.2); }
+  .hstat:first-child { border-left: none; padding-left: 0; }
+  .hstat-num {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 1.1rem; font-weight: 600; color: #ffffff; line-height: 1;
+  }
+  .hstat-label {
+    font-size: 0.6rem; color: #d8b4fe; text-transform: uppercase;
+    letter-spacing: 0.07em; margin-top: 5px; font-weight: 500;
+    opacity: 1; font-family: 'DM Sans', sans-serif;
+  }
   .header-impact-strip {
-    background: rgba(0,0,0,0.22);
-    padding: 8px 48px;
-    font-size: 0.75rem;
-    color: rgba(255,255,255,0.72);
-    display: flex; gap: 24px; align-items: center; flex-wrap: wrap;
+    background: rgba(20, 4, 40, 0.42);
+    backdrop-filter: blur(10px);
+    padding: 11px 48px;
+    font-size: 0.74rem;
+    color: #e9d5ff;
+    display: flex; gap: 20px; align-items: center; flex-wrap: wrap;
     border-top: 1px solid rgba(255,255,255,0.1);
-    font-family: 'Inter', sans-serif;
-    position: relative; z-index: 1;
+    font-family: 'DM Sans', sans-serif;
+    position: relative; z-index: 2;
   }
-  .header-impact-strip strong { color: white; font-weight: 600; }
-  .header-impact-strip .pip { opacity: 0.25; }
+  .header-impact-strip strong { color: #ffffff; font-weight: 600; }
+  .header-impact-strip .pip { opacity: 0.5; color: #c4b5fd; }
+  @media (max-width: 860px) {
+    .header-inner { grid-template-columns: 1fr; }
+    .header-left { padding: 24px 20px 18px; }
+    .header-visual { min-height: 180px; }
+    .header-visual {
+      -webkit-mask-image: linear-gradient(180deg, transparent 0%, #000 22%, #000 100%);
+      mask-image: linear-gradient(180deg, transparent 0%, #000 22%, #000 100%);
+    }
+  }
 
   /* ─── NAV TABS ─── */
   .tabs {
@@ -122,7 +183,7 @@ body {
 
   /* ─── SECTION HEADERS ─── */
   .section-title {
-    font-family: 'Syne', sans-serif;
+    font-family: 'DM Sans', sans-serif;
     font-size: 1.45rem;
     color: #1a1a2e;
     margin-bottom: 6px;
@@ -382,7 +443,7 @@ body {
   .pub-link { color: #4361ee; text-decoration: none; font-weight: 600; }
   .pub-link:hover { text-decoration: underline; }
   .hl-pmid-link {
-    font-size: 0.72rem; color: #4361ee; font-family: 'Inter', sans-serif;
+    font-size: 0.72rem; color: #4361ee; font-family: 'DM Sans', sans-serif;
     text-decoration: none; font-weight: 600;
   }
   .hl-pmid-link:hover { text-decoration: underline; }
@@ -520,17 +581,19 @@ body {
     body { padding: 0 !important; margin: 0 !important; }
 
     .header-inner {
-      flex-direction: column !important;
-      align-items: flex-start !important;
-      gap: 14px !important;
-      padding: 16px 14px 14px !important;
+      grid-template-columns: 1fr !important;
+      min-height: 0 !important;
     }
-    .header-title { font-size: 1.15rem !important; }
+    .header-left { padding: 20px 14px 16px !important; }
+    .header-visual { min-height: 160px !important; }
+    .header-title { font-size: 1.1rem !important; }
+    .header-quote { font-size: 0.85rem !important; }
     .header-stats {
       flex-wrap: wrap !important;
       width: 100% !important;
       justify-content: flex-start !important;
       gap: 8px 0 !important;
+      margin-top: 14px !important;
     }
     .hstat {
       padding: 8px 14px !important;
@@ -538,7 +601,8 @@ body {
       min-width: 33%;
       flex: 1 1 auto;
     }
-    .hstat-num { font-size: 1.45rem !important; }
+    .hstat:first-child { padding-left: 0 !important; border-left: none !important; }
+    .hstat-num { font-size: 1.05rem !important; }
     .header-impact-strip {
       padding: 8px 14px !important;
       font-size: 0.68rem !important;
@@ -743,28 +807,30 @@ body {
 <div class="header">
   <div class="header-inner">
     <div class="header-left">
-      <div class="header-nyu-badge"><span>NYU</span></div>
-      <div>
-        <div class="header-title">Applied Bioinformatics Laboratories (ABL)
-          <span>Research Productivity Dashboard · 2016 – 2025</span>
-        </div>
+      <div class="header-title">
+        Applied Bioinformatics Laboratories
+        <span>Research Productivity Dashboard · 2016 – 2025</span>
+      </div>
+      <div class="header-quote">Computational analysis and support for high-throughput genomics — guiding design, QC, and insight across NYU Langone and beyond.</div>
+      <div class="header-stats">
+        <div class="hstat"><div class="hstat-num">487</div><div class="hstat-label">Publications</div></div>
+        <div class="hstat"><div class="hstat-num">2.8×</div><div class="hstat-label">10-yr Growth</div></div>
+        <div class="hstat"><div class="hstat-num">4,456</div><div class="hstat-label">Co-authors</div></div>
+        <div class="hstat"><div class="hstat-num">73</div><div class="hstat-label">Pubs in 2025</div></div>
       </div>
     </div>
-    <div class="header-stats">
-      <div class="hstat"><div class="hstat-num">487</div><div class="hstat-label">Publications</div></div>
-      <div class="hstat"><div class="hstat-num">2.8×</div><div class="hstat-label">10-yr Growth</div></div>
-      <div class="hstat"><div class="hstat-num">4,456</div><div class="hstat-label">Co-authors</div></div>
-      <div class="hstat"><div class="hstat-num">73</div><div class="hstat-label">Pubs in 2025</div></div>
+    <div class="header-visual" aria-hidden="true">
+      <img class="header-art" src="assets/abl-header-bioinformatics.png" alt="" width="1920" height="1080" decoding="async">
     </div>
   </div>
-  <div class="header-impact-strip" style="align-items:center">
-    <span>🔬 <strong>102</strong> verified NYU faculty labs · <strong>154</strong> total NYU affiliations</span>
-    <span class="pip">|</span>
-    <span>📰 Published in <strong>Nature · Cell · Cancer Discovery</strong> &amp; 80+ journals</span>
-    <span class="pip">|</span>
-    <span>📈 <strong>284% output growth</strong> · 2016 → 2025</span>
-    <span class="pip">|</span>
-    <span>🏆 <strong>Nat Commun</strong> top outlet · 34 papers</span>
+  <div class="header-impact-strip">
+    <span><strong>102</strong> verified NYU faculty labs · <strong>154</strong> total NYU affiliations</span>
+    <span class="pip">·</span>
+    <span>Published in <strong>Nature · Cell · Cancer Discovery</strong> &amp; 80+ journals</span>
+    <span class="pip">·</span>
+    <span><strong>284% output growth</strong> · 2016 → 2025</span>
+    <span class="pip">·</span>
+    <span><strong>Nat Commun</strong> top outlet · 34 papers</span>
   </div>
 </div>
 
@@ -1072,7 +1138,7 @@ body {
     </div>
     <div id="deptScatter-container" style="height:480px;position:relative;width:100%">
       <svg id="deptScatter-svg" style="width:100%;height:100%"></svg>
-      <div id="deptScatter-tooltip" style="position:absolute;background:#1a1a2e;color:white;padding:9px 13px;border-radius:7px;font-size:0.78rem;pointer-events:none;opacity:0;transition:opacity 0.15s;font-family:'Inter',sans-serif;max-width:230px;line-height:1.55;z-index:10;"></div>
+      <div id="deptScatter-tooltip" style="position:absolute;background:#1a1a2e;color:white;padding:9px 13px;border-radius:7px;font-size:0.78rem;pointer-events:none;opacity:0;transition:opacity 0.15s;font-family:'DM Sans',sans-serif;max-width:230px;line-height:1.55;z-index:10;"></div>
     </div>
     <div id="deptScatter-legend" style="display:flex;flex-wrap:wrap;gap:8px 20px;margin-top:14px;padding:10px 14px;background:#fafafa;border-radius:8px;border:1px solid #eee"></div>
     <div style="margin-top:6px;font-size:0.71rem;color:#bbb">Department sizes sourced from NYU Langone faculty pages · bubble size = % of dept labs that collaborated with ABL</div>
@@ -1093,7 +1159,7 @@ body {
     </div>
     <div id="netA-container" style="width:100%;height:520px;border:1.5px solid #e8e8ee;border-radius:10px;background:white;position:relative;overflow:hidden;">
       <svg id="netA-svg" style="width:100%;height:100%"></svg>
-      <div id="netA-tooltip" style="position:absolute;background:#1a1a2e;color:white;padding:9px 13px;border-radius:7px;font-size:0.78rem;pointer-events:none;opacity:0;transition:opacity 0.15s;font-family:'Inter',sans-serif;max-width:240px;line-height:1.5;z-index:10;"></div>
+      <div id="netA-tooltip" style="position:absolute;background:#1a1a2e;color:white;padding:9px 13px;border-radius:7px;font-size:0.78rem;pointer-events:none;opacity:0;transition:opacity 0.15s;font-family:'DM Sans',sans-serif;max-width:240px;line-height:1.5;z-index:10;"></div>
     </div>
     <div style="display:flex;flex-wrap:wrap;gap:12px;margin-top:12px">
       <div class="legend-item"><div class="legend-dot" style="background:#e63946"></div>Pathology (18 labs)</div>
@@ -1120,7 +1186,7 @@ body {
     </div>
     <div id="us-map-container-net" style="position:relative;width:100%;background:white;border:1px solid #f0f0f5;border-radius:8px;overflow:hidden;">
       <svg id="us-map-svg-net" style="width:100%;display:block;"></svg>
-      <div id="us-map-tooltip-net" style="position:absolute;background:#1a1a2e;color:white;padding:9px 13px;border-radius:7px;font-size:0.78rem;pointer-events:none;opacity:0;transition:opacity 0.15s;font-family:'Inter',sans-serif;max-width:220px;line-height:1.5;z-index:10;white-space:normal;"></div>
+      <div id="us-map-tooltip-net" style="position:absolute;background:#1a1a2e;color:white;padding:9px 13px;border-radius:7px;font-size:0.78rem;pointer-events:none;opacity:0;transition:opacity 0.15s;font-family:'DM Sans',sans-serif;max-width:220px;line-height:1.5;z-index:10;white-space:normal;"></div>
     </div>
     <div style="display:flex;flex-wrap:wrap;gap:8px 16px;margin-top:12px;align-items:center;font-size:0.76rem;color:#444;">
       <div class="legend-item"><div style="width:10px;height:10px;border-radius:50%;background:#57068C;display:inline-block;margin-right:5px;flex-shrink:0"></div>NYU Langone / ABL (487)</div>
@@ -1497,7 +1563,7 @@ function _buildDeptNetworkInto(containerId, svgId, simKey) {
 
   ng.append('text').text(d=>d.pubs)
     .attr('text-anchor','middle').attr('dy','0.35em')
-    .attr('font-size','10').attr('font-family','Inter,sans-serif')
+    .attr('font-size','10').attr('font-family','DM Sans,sans-serif')
     .attr('fill','white').attr('font-weight','700').style('pointer-events','none');
 
   ng.append('text').text(d=>d.id)
@@ -2255,7 +2321,7 @@ function renderTopAuthorsTable() {
     const border = i < networkTopCoAuthors.length - 1 ? 'border-bottom:1px solid #f0f0f5;' : '';
     return `<tr style="${border}background:${bg}" class="pub-filter-bar" data-pub-filter='${JSON.stringify(filter)}' title="View papers by this author">
       <td style="padding:7px 12px;color:#aaa;font-size:0.78rem;text-align:center;width:36px">${i + 1}</td>
-      <td style="padding:7px 12px;font-weight:600;color:${nameColor};font-family:'DM Mono',monospace;font-size:0.83rem;cursor:pointer">${a.display}${ablBadge}</td>
+      <td style="padding:7px 12px;font-weight:600;color:${nameColor};font-family:'DM Sans',sans-serif;font-size:0.83rem;cursor:pointer">${a.display}${ablBadge}</td>
       <td style="padding:7px 12px;font-weight:700;color:${countColor};text-align:center;width:60px">${a.count}</td>
     </tr>`;
   }).join('');
@@ -3172,7 +3238,7 @@ function buildNetworkA() {
   nodeG.append('text')
     .text(d=>d.id.length>9?d.id.slice(0,8)+'…':d.id)
     .attr('text-anchor','middle').attr('dy',d=>nodeR(d)+12)
-    .attr('font-size','9').attr('font-family','Inter,sans-serif')
+    .attr('font-size','9').attr('font-family','DM Sans,sans-serif')
     .attr('fill','#333').attr('font-weight','600')
     .style('pointer-events','none');
 
@@ -3180,7 +3246,7 @@ function buildNetworkA() {
     .text(d=>d.pubs)
     .attr('text-anchor','middle').attr('dy','0.35em')
     .attr('font-size',d=>nodeR(d)>14?'9':'7')
-    .attr('font-family','Inter,sans-serif')
+    .attr('font-family','DM Sans,sans-serif')
     .attr('fill','white').attr('font-weight','800')
     .style('pointer-events','none');
 
@@ -3189,10 +3255,10 @@ function buildNetworkA() {
   hub.append('circle').attr('cx',W/2).attr('cy',H/2).attr('r',26)
     .attr('fill','#1a1a2e').attr('stroke','#e63946').attr('stroke-width',3);
   hub.append('text').attr('x',W/2).attr('y',H/2-4)
-    .attr('text-anchor','middle').attr('font-size','9.5').attr('font-family','Inter,sans-serif')
+    .attr('text-anchor','middle').attr('font-size','9.5').attr('font-family','DM Sans,sans-serif')
     .attr('fill','white').attr('font-weight','800').text('ABL');
   hub.append('text').attr('x',W/2).attr('y',H/2+8)
-    .attr('text-anchor','middle').attr('font-size','7').attr('font-family','Inter,sans-serif')
+    .attr('text-anchor','middle').attr('font-size','7').attr('font-family','DM Sans,sans-serif')
     .attr('fill','#e63946').attr('font-weight','700').text('HUB');
 
   const tt = document.getElementById('netA-tooltip');
@@ -3290,7 +3356,7 @@ function buildChartC() {
         const {ctx} = chart;
         chart.getDatasetMeta(0).data.forEach((bar,i)=>{
           ctx.save();
-          ctx.font='500 8.5px Inter,sans-serif';
+          ctx.font='500 8.5px DM Sans,sans-serif';
           ctx.fillStyle='#888';
           ctx.textBaseline='middle';
           ctx.fillText(sorted[i].dept, bar.x+6, bar.y);
@@ -3508,14 +3574,14 @@ function buildNetworkC() {
   ng.append('text')
     .text(d=>d.label.length>10?d.label.slice(0,9)+'…':d.label)
     .attr('text-anchor','middle').attr('dy',d=>nodeR(d)+12)
-    .attr('font-size','9').attr('font-family','Inter,sans-serif')
+    .attr('font-size','9').attr('font-family','DM Sans,sans-serif')
     .attr('fill','#333').attr('font-weight','600')
     .style('pointer-events','none');
 
   ng.append('text').text(d=>d.count)
     .attr('text-anchor','middle').attr('dy','0.35em')
     .attr('font-size',d=>nodeR(d)>14?'9':'7')
-    .attr('font-family','Inter,sans-serif')
+    .attr('font-family','DM Sans,sans-serif')
     .attr('fill','white').attr('font-weight','800')
     .style('pointer-events','none');
 
@@ -3523,10 +3589,10 @@ function buildNetworkC() {
   h.append('circle').attr('cx',W/2).attr('cy',H/2).attr('r',26)
     .attr('fill','#1a1a2e').attr('stroke','#e63946').attr('stroke-width',3);
   h.append('text').attr('x',W/2).attr('y',H/2-4)
-    .attr('text-anchor','middle').attr('font-size','9.5').attr('font-family','Inter,sans-serif')
+    .attr('text-anchor','middle').attr('font-size','9.5').attr('font-family','DM Sans,sans-serif')
     .attr('fill','white').attr('font-weight','800').text('ABL');
   h.append('text').attr('x',W/2).attr('y',H/2+8)
-    .attr('text-anchor','middle').attr('font-size','7').attr('font-family','Inter,sans-serif')
+    .attr('text-anchor','middle').attr('font-size','7').attr('font-family','DM Sans,sans-serif')
     .attr('fill','#e63946').attr('font-weight','700').text('HUB');
 
   const tt = document.getElementById('netC-tooltip');
@@ -3592,14 +3658,14 @@ function buildNetworkD() {
   ng2.append('text')
     .text(d=>d.label.length>10?d.label.slice(0,9)+'…':d.label)
     .attr('text-anchor','middle').attr('dy',d=>nodeR(d)+12)
-    .attr('font-size','9').attr('font-family','Inter,sans-serif')
+    .attr('font-size','9').attr('font-family','DM Sans,sans-serif')
     .attr('fill','#333').attr('font-weight','600')
     .style('pointer-events','none');
 
   ng2.append('text').text(d=>d.count)
     .attr('text-anchor','middle').attr('dy','0.35em')
     .attr('font-size',d=>nodeR(d)>14?'9':'7')
-    .attr('font-family','Inter,sans-serif')
+    .attr('font-family','DM Sans,sans-serif')
     .attr('fill','white').attr('font-weight','800')
     .style('pointer-events','none');
 
@@ -3607,10 +3673,10 @@ function buildNetworkD() {
   h2.append('circle').attr('cx',W/2).attr('cy',H/2).attr('r',26)
     .attr('fill','#1a1a2e').attr('stroke','#e63946').attr('stroke-width',3);
   h2.append('text').attr('x',W/2).attr('y',H/2-4)
-    .attr('text-anchor','middle').attr('font-size','9.5').attr('font-family','Inter,sans-serif')
+    .attr('text-anchor','middle').attr('font-size','9.5').attr('font-family','DM Sans,sans-serif')
     .attr('fill','white').attr('font-weight','800').text('ABL');
   h2.append('text').attr('x',W/2).attr('y',H/2+8)
-    .attr('text-anchor','middle').attr('font-size','7').attr('font-family','Inter,sans-serif')
+    .attr('text-anchor','middle').attr('font-size','7').attr('font-family','DM Sans,sans-serif')
     .attr('fill','#e63946').attr('font-weight','700').text('HUB');
 
   const tt2=document.getElementById('netD-tooltip');
@@ -4089,7 +4155,7 @@ function initPCCCharts() {
         const { ctx } = chart;
         chart.getDatasetMeta(0).data.forEach((bar,i) => {
           ctx.save();
-          ctx.font = '500 8px Inter,sans-serif';
+          ctx.font = '500 8px DM Sans,sans-serif';
           ctx.fillStyle = progColor[sorted[i].prog] || '#666';
           ctx.textAlign = 'left';
           ctx.fillText(sorted[i].prog, bar.x + 4, bar.y + 3.5);
@@ -4153,7 +4219,7 @@ function initPCCCharts() {
         const { ctx } = chart;
         chart.getDatasetMeta(0).data.forEach((bar,i) => {
           ctx.save();
-          ctx.font = 'bold 10px Inter,sans-serif';
+          ctx.font = 'bold 10px DM Sans,sans-serif';
           ctx.fillStyle = '#333';
           ctx.textAlign = 'left';
           ctx.fillText(ccsgTotal[i], bar.x + 5, bar.y + 4.5);
@@ -4318,7 +4384,7 @@ function initPCCCharts() {
         const { ctx } = chart;
         chart.getDatasetMeta(0).data.forEach((bar,i) => {
           ctx.save();
-          ctx.font = 'bold 9.5px Inter,sans-serif';
+          ctx.font = 'bold 9.5px DM Sans,sans-serif';
           ctx.fillStyle = '#333';
           ctx.textAlign = 'left';
           ctx.fillText(collabRate[i] + 'x', bar.x + 5, bar.y + 4.5);
@@ -4654,7 +4720,7 @@ function buildUSMap(svgId, containerId, tooltipId) {
 
   // Title
   const titleEl = el('text', {x:W/2, y:20, 'text-anchor':'middle',
-    'font-size':'12', 'font-weight':'700', 'font-family':'Inter,sans-serif', fill:'#1a1a2e'});
+    'font-size':'12', 'font-weight':'700', 'font-family':'DM Sans,sans-serif', fill:'#1a1a2e'});
   titleEl.textContent = 'ABL Collaboration Reach Across the United States';
   svgEl.appendChild(titleEl);
 
@@ -4768,7 +4834,7 @@ function buildUSMap(svgId, containerId, tooltipId) {
 
       // Count label
       const lbl = el('text', {x, y, 'text-anchor':'middle', dy:'0.35em',
-        'font-size': r > 14 ? '9' : '7.5', 'font-family':'Inter,sans-serif',
+        'font-size': r > 14 ? '9' : '7.5', 'font-family':'DM Sans,sans-serif',
         fill:'white', 'font-weight':'800', 'pointer-events':'none'});
       lbl.textContent = isHub ? 'ABL' : inst.count;
       svgEl.appendChild(lbl);
@@ -5497,7 +5563,7 @@ window.addEventListener('load', () => {
               <div style="padding:24px 26px 22px">
                 <div style="display:flex;align-items:center;gap:10px;margin-bottom:12px;flex-wrap:wrap">
                   <span style="background:#57068C;color:white;font-size:0.68rem;font-weight:700;padding:3px 10px;border-radius:20px;letter-spacing:0.04em;text-transform:uppercase">Nature · 2026</span>
-                  <span style="font-size:0.72rem;color:#888;font-family:'Inter',sans-serif">PMID: 41708864</span>
+                  <span style="font-size:0.72rem;color:#888;font-family:'DM Sans',sans-serif">PMID: 41708864</span>
                   <span style="font-size:0.72rem;color:#57068C;font-weight:600">Papagiannakopoulos lab</span>
                 </div>
                 <div style="font-size:1.05rem;font-weight:700;color:#1a1a2e;line-height:1.4;margin-bottom:5px">The Integrated Stress Response Promotes Immune Evasion Through Lipocalin 2</div>
@@ -5551,7 +5617,7 @@ window.addEventListener('load', () => {
               <div style="padding:24px 26px 22px">
                 <div style="display:flex;align-items:center;gap:10px;margin-bottom:12px;flex-wrap:wrap">
                   <span style="background:#57068C;color:white;font-size:0.68rem;font-weight:700;padding:3px 10px;border-radius:20px;letter-spacing:0.04em;text-transform:uppercase">Cell · 2026</span>
-                  <span style="font-size:0.72rem;color:#888;font-family:'Inter',sans-serif">PMID: 41702399</span>
+                  <span style="font-size:0.72rem;color:#888;font-family:'DM Sans',sans-serif">PMID: 41702399</span>
                   <span style="font-size:0.72rem;color:#57068C;font-weight:600">Simeone lab (w/ Kimmelman lab)</span>
                 </div>
                 <div style="font-size:1.05rem;font-weight:700;color:#1a1a2e;line-height:1.4;margin-bottom:5px">Heterogeneity of Autophagic Flux in Pancreatic Ductal Adenocarcinoma</div>
@@ -5617,7 +5683,7 @@ window.addEventListener('load', () => {
               <div style="padding:24px 26px 22px">
                 <div style="display:flex;align-items:center;gap:10px;margin-bottom:12px;flex-wrap:wrap">
                   <span style="background:#57068C;color:white;font-size:0.68rem;font-weight:700;padding:3px 10px;border-radius:20px;letter-spacing:0.04em;text-transform:uppercase">Science · 2025</span>
-                  <span style="font-size:0.72rem;color:#888;font-family:'Inter',sans-serif">PMID: 41678619</span>
+                  <span style="font-size:0.72rem;color:#888;font-family:'DM Sans',sans-serif">PMID: 41678619</span>
                   <span style="font-size:0.72rem;color:#57068C;font-weight:600">Reizis lab</span>
                 </div>
                 <div style="font-size:1.05rem;font-weight:700;color:#1a1a2e;line-height:1.4;margin-bottom:5px">Sc-MultiOme (snRNA+ATAC) Analysis of Migratory DCs in Autoimmunity</div>
@@ -5669,7 +5735,7 @@ window.addEventListener('load', () => {
               <div style="padding:24px 26px 22px">
                 <div style="display:flex;align-items:center;gap:10px;margin-bottom:12px;flex-wrap:wrap">
                   <span style="background:#57068C;color:white;font-size:0.68rem;font-weight:700;padding:3px 10px;border-radius:20px;letter-spacing:0.04em;text-transform:uppercase">Nature Medicine · 2018</span>
-                  <span style="font-size:0.72rem;color:#888;font-family:'Inter',sans-serif">PMID: 30224757</span>
+                  <span style="font-size:0.72rem;color:#888;font-family:'DM Sans',sans-serif">PMID: 30224757</span>
                   <span style="font-size:0.72rem;color:#57068C;font-weight:600">Razavian &amp; Tsirigos labs</span>
                 </div>
                 <div style="font-size:1.05rem;font-weight:700;color:#1a1a2e;line-height:1.4;margin-bottom:5px">Deep Learning for Lung Cancer Subtyping and Mutation Prediction from Histopathology</div>
@@ -5721,7 +5787,7 @@ window.addEventListener('load', () => {
               <div style="padding:24px 26px 22px">
                 <div style="display:flex;align-items:center;gap:10px;margin-bottom:12px;flex-wrap:wrap">
                   <span style="background:#57068C;color:white;font-size:0.68rem;font-weight:700;padding:3px 10px;border-radius:20px;letter-spacing:0.04em;text-transform:uppercase">Nature · 2026</span>
-                  <span style="font-size:0.72rem;color:#888;font-family:'Inter',sans-serif">PMID: 41535459</span>
+                  <span style="font-size:0.72rem;color:#888;font-family:'DM Sans',sans-serif">PMID: 41535459</span>
                   <span style="font-size:0.72rem;color:#57068C;font-weight:600">Littman lab</span>
                 </div>
                 <div style="font-size:1.05rem;font-weight:700;color:#1a1a2e;line-height:1.4;margin-bottom:5px">Microbiota-Induced T Cell Plasticity Enables Immune-Mediated Tumour Control</div>
@@ -5775,7 +5841,7 @@ window.addEventListener('load', () => {
               <div style="padding:24px 26px 22px">
                 <div style="display:flex;align-items:center;gap:10px;margin-bottom:12px;flex-wrap:wrap">
                   <span style="background:#57068C;color:white;font-size:0.68rem;font-weight:700;padding:3px 10px;border-radius:20px;letter-spacing:0.04em;text-transform:uppercase">Cancer Cell · 2022</span>
-                  <span style="font-size:0.72rem;color:#888;font-family:'Inter',sans-serif">PMID: 35660135</span>
+                  <span style="font-size:0.72rem;color:#888;font-family:'DM Sans',sans-serif">PMID: 35660135</span>
                   <span style="font-size:0.72rem;color:#57068C;font-weight:600">Bar-Sagi lab</span>
                 </div>
                 <div style="font-size:1.05rem;font-weight:700;color:#1a1a2e;line-height:1.4;margin-bottom:5px">KNetL Map: An Adjustable Dimensionality Reduction Tool</div>
@@ -5841,7 +5907,7 @@ window.addEventListener('load', () => {
               <div style="padding:24px 26px 22px">
                 <div style="display:flex;align-items:center;gap:10px;margin-bottom:12px;flex-wrap:wrap">
                   <span style="background:#57068C;color:white;font-size:0.68rem;font-weight:700;padding:3px 10px;border-radius:20px;letter-spacing:0.04em;text-transform:uppercase">Nat Med · 2025</span>
-                  <span style="font-size:0.72rem;color:#888;font-family:'Inter',sans-serif">PMID: 40473950</span>
+                  <span style="font-size:0.72rem;color:#888;font-family:'DM Sans',sans-serif">PMID: 40473950</span>
                   <span style="font-size:0.72rem;color:#57068C;font-weight:600">Kirchhoff lab</span>
                 </div>
                 <div style="font-size:1.05rem;font-weight:700;color:#1a1a2e;line-height:1.4;margin-bottom:5px">Inherited Mitochondrial Genetics as a Predictor of Immune Checkpoint Inhibition Efficacy in Melanoma</div>
@@ -5893,7 +5959,7 @@ window.addEventListener('load', () => {
               <div style="padding:24px 26px 22px">
                 <div style="display:flex;align-items:center;gap:10px;margin-bottom:12px;flex-wrap:wrap">
                   <span style="background:#57068C;color:white;font-size:0.68rem;font-weight:700;padding:3px 10px;border-radius:20px;letter-spacing:0.04em;text-transform:uppercase">Molecular Cell · 2025</span>
-                  <span style="font-size:0.72rem;color:#888;font-family:'Inter',sans-serif">PMID: 39719705</span>
+                  <span style="font-size:0.72rem;color:#888;font-family:'DM Sans',sans-serif">PMID: 39719705</span>
                   <span style="font-size:0.72rem;color:#57068C;font-weight:600">Aifantis / Tsirigos lab</span>
                 </div>
                 <div style="font-size:1.05rem;font-weight:700;color:#1a1a2e;line-height:1.4;margin-bottom:5px">Integrative Analysis of 3D Chromatin Organization and Accessibility in Acute Leukemia</div>
@@ -5945,7 +6011,7 @@ window.addEventListener('load', () => {
               <div style="padding:24px 26px 22px">
                 <div style="display:flex;align-items:center;gap:10px;margin-bottom:12px;flex-wrap:wrap">
                   <span style="background:#57068C;color:white;font-size:0.68rem;font-weight:700;padding:3px 10px;border-radius:20px;letter-spacing:0.04em;text-transform:uppercase">Circulation · 2023</span>
-                  <span style="font-size:0.72rem;color:#888;font-family:'Inter',sans-serif">PMID: 37772400</span>
+                  <span style="font-size:0.72rem;color:#888;font-family:'DM Sans',sans-serif">PMID: 37772400</span>
                   <span style="font-size:0.72rem;color:#57068C;font-weight:600">Park lab</span>
                 </div>
                 <div style="font-size:1.05rem;font-weight:700;color:#1a1a2e;line-height:1.4;margin-bottom:5px">Integrative Multi-Omics Analysis of Gene Regulatory Programs in Cardiac Outflow Tract Development</div>
@@ -5997,7 +6063,7 @@ window.addEventListener('load', () => {
               <div style="padding:24px 26px 22px">
                 <div style="display:flex;align-items:center;gap:10px;margin-bottom:12px;flex-wrap:wrap">
                   <span style="background:#57068C;color:white;font-size:0.68rem;font-weight:700;padding:3px 10px;border-radius:20px;letter-spacing:0.04em;text-transform:uppercase">Nature · 2021</span>
-                  <span style="font-size:0.72rem;color:#888;font-family:'Inter',sans-serif">PMID: 33658712</span>
+                  <span style="font-size:0.72rem;color:#888;font-family:'DM Sans',sans-serif">PMID: 33658712</span>
                   <span style="font-size:0.72rem;color:#57068C;font-weight:600">Schwab lab</span>
                 </div>
                 <div style="font-size:1.05rem;font-weight:700;color:#1a1a2e;line-height:1.4;margin-bottom:5px">Monocyte-Derived S1P in the Lymph Node Regulates Immune Responses</div>
@@ -6049,7 +6115,7 @@ window.addEventListener('load', () => {
               <div style="padding:24px 26px 22px">
                 <div style="display:flex;align-items:center;gap:10px;margin-bottom:12px;flex-wrap:wrap">
                   <span style="background:#57068C;color:white;font-size:0.68rem;font-weight:700;padding:3px 10px;border-radius:20px;letter-spacing:0.04em;text-transform:uppercase">Cancer Discovery · 2022</span>
-                  <span style="font-size:0.72rem;color:#888;font-family:'Inter',sans-serif">PMID: 34911733</span>
+                  <span style="font-size:0.72rem;color:#888;font-family:'DM Sans',sans-serif">PMID: 34911733</span>
                   <span style="font-size:0.72rem;color:#57068C;font-weight:600">Neel lab</span>
                 </div>
                 <div style="font-size:1.05rem;font-weight:700;color:#1a1a2e;line-height:1.4;margin-bottom:5px">Ontogeny and Vulnerabilities of Drug-Tolerant Persisters in HER2+ Breast Cancer</div>
@@ -6101,7 +6167,7 @@ window.addEventListener('load', () => {
               <div style="padding:24px 26px 22px">
                 <div style="display:flex;align-items:center;gap:10px;margin-bottom:12px;flex-wrap:wrap">
                   <span style="background:#57068C;color:white;font-size:0.68rem;font-weight:700;padding:3px 10px;border-radius:20px;letter-spacing:0.04em;text-transform:uppercase">Molecular Cell · 2019</span>
-                  <span style="font-size:0.72rem;color:#888;font-family:'Inter',sans-serif">PMID: 31522988</span>
+                  <span style="font-size:0.72rem;color:#888;font-family:'DM Sans',sans-serif">PMID: 31522988</span>
                   <span style="font-size:0.72rem;color:#57068C;font-weight:600">Reinberg / Skok labs</span>
                 </div>
                 <div style="font-size:1.05rem;font-weight:700;color:#1a1a2e;line-height:1.4;margin-bottom:5px">RNA Interactions Are Essential for CTCF-Mediated Genome Organization</div>
@@ -6153,7 +6219,7 @@ window.addEventListener('load', () => {
               <div style="padding:24px 26px 22px">
                 <div style="display:flex;align-items:center;gap:10px;margin-bottom:12px;flex-wrap:wrap">
                   <span style="background:#57068C;color:white;font-size:0.68rem;font-weight:700;padding:3px 10px;border-radius:20px;letter-spacing:0.04em;text-transform:uppercase">Molecular Cell · 2025</span>
-                  <span style="font-size:0.72rem;color:#888;font-family:'Inter',sans-serif">PMID: 39719705</span>
+                  <span style="font-size:0.72rem;color:#888;font-family:'DM Sans',sans-serif">PMID: 39719705</span>
                   <span style="font-size:0.72rem;color:#57068C;font-weight:600">Tsirigos / Aifantis labs</span>
                 </div>
                 <div style="font-size:1.05rem;font-weight:700;color:#1a1a2e;line-height:1.4;margin-bottom:5px">3D Chromatin Hubs as Regulatory Units of Identity and Survival in Human Acute Leukemia</div>
@@ -6205,7 +6271,7 @@ window.addEventListener('load', () => {
               <div style="padding:24px 26px 22px">
                 <div style="display:flex;align-items:center;gap:10px;margin-bottom:12px;flex-wrap:wrap">
                   <span style="background:#57068C;color:white;font-size:0.68rem;font-weight:700;padding:3px 10px;border-radius:20px;letter-spacing:0.04em;text-transform:uppercase">Clin Cancer Res · 2023</span>
-                  <span style="font-size:0.72rem;color:#888;font-family:'Inter',sans-serif">PMID: 37449980</span>
+                  <span style="font-size:0.72rem;color:#888;font-family:'DM Sans',sans-serif">PMID: 37449980</span>
                   <span style="font-size:0.72rem;color:#57068C;font-weight:600">Morgan lab</span>
                 </div>
                 <div style="font-size:1.05rem;font-weight:700;color:#1a1a2e;line-height:1.4;margin-bottom:5px">Uncovering Clinical Implications of Different 1q Gain Genotypes in Multiple Myeloma</div>

@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>NYU ABL Publications Dashboard 2016–2025</title>
+<title>NYU ABL Publications Dashboard 2015–2026</title>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/7.8.5/d3.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/topojson-client@3/dist/topojson-client.min.js"></script>
@@ -11,6 +11,7 @@
 <script src="data/publications.js"></script>
 <script src="data/pcc_dashboard.js"></script>
 <script src="data/network_dashboard.js"></script>
+<script src="data/derived.js"></script>
 <script src="assets/repo-logos/logos.js"></script>
 <style>
   @import url('https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=DM+Sans:wght@300;400;500;600;700&display=swap');
@@ -42,12 +43,12 @@ body {
     align-items: stretch;
     position: relative;
     z-index: 1;
-    min-height: 248px;
+    min-height: 156px;
     padding: 0;
   }
   .header-left {
     max-width: none;
-    padding: 32px 36px 28px 48px;
+    padding: 16px 28px 14px 36px;
     background: transparent;
     display: flex;
     flex-direction: column;
@@ -58,7 +59,7 @@ body {
   }
   .header-visual {
     position: relative;
-    min-height: 248px;
+    min-height: 156px;
     background: transparent;
     overflow: hidden;
     -webkit-mask-image: linear-gradient(90deg, transparent 0%, #000 18%, #000 100%);
@@ -83,7 +84,7 @@ body {
     font-family: 'DM Sans', sans-serif;
     font-weight: 600; font-size: 0.72rem;
     color: #f3e8ff;
-    margin-bottom: 12px;
+    margin-bottom: 8px;
   }
   .header-title {
     font-family: 'DM Sans', sans-serif;
@@ -101,9 +102,9 @@ body {
     text-transform: none;
   }
   .header-quote {
-    margin-top: 12px;
+    margin-top: 8px;
     font-family: 'DM Sans', sans-serif;
-    font-size: 0.92rem;
+    font-size: 0.86rem;
     font-weight: 400;
     color: #f3e8ff;
     line-height: 1.55;
@@ -114,7 +115,7 @@ body {
     display: flex;
     gap: 0;
     text-align: center;
-    margin-top: 18px;
+    margin-top: 10px;
     flex-wrap: wrap;
   }
   .hstat { padding: 0 14px; border-left: 1px solid rgba(255,255,255,0.2); }
@@ -131,7 +132,7 @@ body {
   .header-impact-strip {
     background: rgba(20, 4, 40, 0.42);
     backdrop-filter: blur(10px);
-    padding: 11px 48px;
+    padding: 8px 36px;
     font-size: 0.74rem;
     color: #e9d5ff;
     display: flex; gap: 20px; align-items: center; flex-wrap: wrap;
@@ -143,8 +144,8 @@ body {
   .header-impact-strip .pip { opacity: 0.5; color: #c4b5fd; }
   @media (max-width: 860px) {
     .header-inner { grid-template-columns: 1fr; }
-    .header-left { padding: 24px 20px 18px; }
-    .header-visual { min-height: 180px; }
+    .header-left { padding: 16px 18px 12px; }
+    .header-visual { min-height: 112px; }
     .header-visual {
       -webkit-mask-image: linear-gradient(180deg, transparent 0%, #000 22%, #000 100%);
       mask-image: linear-gradient(180deg, transparent 0%, #000 22%, #000 100%);
@@ -529,11 +530,20 @@ body {
     border-color: #57068C;
     box-shadow: 0 2px 10px #57068C14;
   }
-  .repo-logo-tile img {
+  .repo-logo-tile img,
+  .repo-logo-mark {
     width: 100%;
     max-height: 64px;
     object-fit: contain;
     display: block;
+  }
+  .repo-logo-mark {
+    font-family: 'DM Sans', Arial, Helvetica, sans-serif;
+    font-weight: 800;
+    font-size: 1.05rem;
+    letter-spacing: -0.03em;
+    line-height: 1.15;
+    text-align: center;
   }
   .repo-logo-grid.compact {
     grid-template-columns: repeat(4, 1fr);
@@ -543,8 +553,10 @@ body {
     min-height: 62px;
     padding: 8px 10px;
   }
-  .repo-logo-tile.compact img {
-    max-height: 44px;
+  .repo-logo-tile.compact img,
+  .repo-logo-tile.compact .repo-logo-mark {
+    max-height: none;
+    font-size: 0.92rem;
   }
   .about-repo-logos-wrap {
     padding: 18px 20px;
@@ -562,8 +574,10 @@ body {
     background: #fff;
     border-color: #ebe6f5;
   }
-  .repo-logo-tile.about img {
-    max-height: 52px;
+  .repo-logo-tile.about img,
+  .repo-logo-tile.about .repo-logo-mark {
+    max-height: none;
+    font-size: 1rem;
   }
 
   /* Print/export friendly */
@@ -809,14 +823,14 @@ body {
     <div class="header-left">
       <div class="header-title">
         Applied Bioinformatics Laboratories
-        <span>Research Productivity Dashboard · 2016 – 2025</span>
+        <span>Research Productivity Dashboard · 2015 – 2026</span>
       </div>
       <div class="header-quote">Computational analysis and support for high-throughput genomics — guiding design, QC, and insight across NYU Langone and beyond.</div>
       <div class="header-stats">
-        <div class="hstat"><div class="hstat-num">487</div><div class="hstat-label">Publications</div></div>
-        <div class="hstat"><div class="hstat-num">2.8×</div><div class="hstat-label">10-yr Growth</div></div>
-        <div class="hstat"><div class="hstat-num">4,456</div><div class="hstat-label">Co-authors</div></div>
-        <div class="hstat"><div class="hstat-num">73</div><div class="hstat-label">Pubs in 2025</div></div>
+        <div class="hstat"><div class="hstat-num">555</div><div class="hstat-label">Publications</div></div>
+        <div class="hstat"><div class="hstat-num">1.9×</div><div class="hstat-label">12-yr Growth</div></div>
+        <div class="hstat"><div class="hstat-num">4,897</div><div class="hstat-label">Co-authors</div></div>
+        <div class="hstat"><div class="hstat-num">50</div><div class="hstat-label">Pubs in 2026</div></div>
       </div>
     </div>
     <div class="header-visual" aria-hidden="true">
@@ -826,11 +840,11 @@ body {
   <div class="header-impact-strip">
     <span><strong>102</strong> verified NYU faculty labs · <strong>154</strong> total NYU affiliations</span>
     <span class="pip">·</span>
-    <span>Published in <strong>Nature · Cell · Cancer Discovery</strong> &amp; 80+ journals</span>
+    <span>Published in <strong>Nature · Cell · Cancer Discovery</strong> &amp; 202 journals</span>
     <span class="pip">·</span>
-    <span><strong>284% output growth</strong> · 2016 → 2025</span>
+    <span><strong>194% output growth</strong> · 2015 → 2026</span>
     <span class="pip">·</span>
-    <span><strong>Nat Commun</strong> top outlet · 34 papers</span>
+    <span><strong>Nat Commun</strong> top outlet · 35 papers</span>
   </div>
 </div>
 
@@ -847,31 +861,31 @@ body {
 
 <div class="page active" id="page-overview">
   <div class="section-title">Research Output Overview</div>
-  <div class="section-sub">487 publications · 2016–2025 · NYU Applied Bioinformatics Laboratories</div>
+  <div class="section-sub">555 publications · 2015–2026 · NYU Applied Bioinformatics Laboratories</div>
 
   <div class="stat-grid">
     <div class="stat-card">
-      <div class="num">487</div>
+      <div class="num">555</div>
       <div class="label">Total Publications</div>
     </div>
     <div class="stat-card">
-      <div class="num blue">91.4%</div>
-      <div class="label">Peer-Reviewed (445)</div>
+      <div class="num blue">90.8%</div>
+      <div class="label">Peer-Reviewed (504)</div>
     </div>
     <div class="stat-card">
-      <div class="num green">284%</div>
+      <div class="num green">194%</div>
       <div class="label">Output Growth 2016→2025</div>
-      <div style="font-size:0.68rem;color:#aaa;margin-top:6px;font-family:'DM Sans',sans-serif;">(73 − 19) ÷ 19 × 100</div>
+      <div style="font-size:0.68rem;color:#aaa;margin-top:6px;font-family:'DM Sans',sans-serif;">(50 − 17) ÷ 17 × 100</div>
     </div>
     <div class="stat-card">
-      <div class="num orange">73</div>
-      <div class="label">Publications in 2025</div>
+      <div class="num orange">50</div>
+      <div class="label">Publications in 2026</div>
     </div>
   </div>
 
   <div style="display:flex;gap:28px;margin-bottom:28px;align-items:stretch">
     <div class="card card-accent" style="flex:1 1 0;min-width:0;margin-bottom:0">
-      <div class="card-title">Publications per Year (2016–2025)</div>
+      <div class="card-title">Publications per Year (2015–2026)</div>
       <div style="font-size:0.7rem;color:#aaa;margin-bottom:4px">Click a bar to see theme breakdown for that year</div>
       <div class="chart-wrap" style="height:230px">
         <div class="dl-group">
@@ -889,7 +903,7 @@ body {
     <div class="card" style="flex:1 1 0;min-width:0;margin-bottom:0">
       <div class="card-title">Top Research Themes</div>
       <div style="font-size:0.7rem;color:#aaa;margin-bottom:4px">Click a bar to see year-by-year trend for that theme</div>
-      <div style="font-size:0.68rem;color:#bbb;margin-bottom:6px;line-height:1.45">Papers may be assigned to multiple themes; bar counts sum to more than 487 total publications.</div>
+      <div style="font-size:0.68rem;color:#bbb;margin-bottom:6px;line-height:1.45">Papers may be assigned to multiple themes; bar counts sum to more than 555 total publications.</div>
       <div class="chart-wrap" style="height:230px">
         <canvas id="overviewThemeBar"></canvas>
       </div>
@@ -1025,7 +1039,7 @@ body {
 
   <div class="card">
     <div class="card-title">Disease Theme Overview</div>
-    <div style="font-size:0.75rem;color:#aaa;margin-bottom:8px">Top 20 disease themes by paper tags (2016–2025)</div>
+    <div style="font-size:0.75rem;color:#aaa;margin-bottom:8px">Top 20 disease themes by paper tags (2015–2026)</div>
     <div class="chart-wrap" style="height:540px">
       <canvas id="diseaseBarChart"></canvas>
     </div>
@@ -1058,7 +1072,7 @@ body {
 
 <div class="page" id="page-network">
   <div class="section-title">Collaboration Networks</div>
-  <div class="section-sub">154 NYU lab affiliations across publications · 102 verified faculty labs with joint papers · 52 additional affiliations · 4,456 unique non-ABL co-authors · geographic reach</div>
+  <div class="section-sub">154 NYU lab affiliations across publications · 102 verified faculty labs with joint papers · 52 additional affiliations · 4,897 unique non-ABL co-authors · geographic reach</div>
 
   <!-- ── Key Stats ── -->
   <div class="stat-grid" style="grid-template-columns:repeat(4,1fr);margin-bottom:12px">
@@ -1080,7 +1094,7 @@ body {
     </div>
   </div>
   <div style="font-size:0.72rem;color:#888;margin-bottom:28px;line-height:1.55;max-width:920px">
-    <strong>Lab counts:</strong> 102 = verified NYU faculty labs with ≥1 joint publication · 154 = all NYU lab affiliations identified in PubMed across 487 papers (includes 52 additional affiliations not mapped to the verified roster).
+    <strong>Lab counts:</strong> 102 = verified NYU faculty labs with ≥1 joint publication · 154 = all NYU lab affiliations identified in PubMed across 555 papers (includes 52 additional affiliations not mapped to the verified roster).
   </div>
 
   <!-- ══ DEPT NETWORK ══ -->
@@ -1097,7 +1111,7 @@ body {
   <div class="grid-2" style="margin-bottom:28px">
     <div class="card card-accent">
       <div class="card-title">NYU Dept. Collaborations by Year</div>
-      <div style="font-size:0.75rem;color:#888;margin-bottom:12px">How ABL's internal NYU reach has grown and diversified 2016–2025</div>
+      <div style="font-size:0.75rem;color:#888;margin-bottom:12px">How ABL's internal NYU reach has grown and diversified 2015–2026</div>
       <div class="chart-wrap" style="height:280px">
         <div class="dl-group" style="position:absolute;top:0;right:0;opacity:1">
           <button class="dl-btn" onclick="downloadCanvas('deptYearChart','ABL_dept_collab_by_year')" title="Download as PNG">
@@ -1189,7 +1203,7 @@ body {
       <div id="us-map-tooltip-net" style="position:absolute;background:#1a1a2e;color:white;padding:9px 13px;border-radius:7px;font-size:0.78rem;pointer-events:none;opacity:0;transition:opacity 0.15s;font-family:'DM Sans',sans-serif;max-width:220px;line-height:1.5;z-index:10;white-space:normal;"></div>
     </div>
     <div style="display:flex;flex-wrap:wrap;gap:8px 16px;margin-top:12px;align-items:center;font-size:0.76rem;color:#444;">
-      <div class="legend-item"><div style="width:10px;height:10px;border-radius:50%;background:#57068C;display:inline-block;margin-right:5px;flex-shrink:0"></div>NYU Langone / ABL (487)</div>
+      <div class="legend-item"><div style="width:10px;height:10px;border-radius:50%;background:#57068C;display:inline-block;margin-right:5px;flex-shrink:0"></div>NYU Langone / ABL (555)</div>
       <div class="legend-item"><div style="width:10px;height:10px;border-radius:50%;background:#e63946;display:inline-block;margin-right:5px;flex-shrink:0"></div>Memorial Sloan Kettering (72)</div>
       <div class="legend-item"><div style="width:10px;height:10px;border-radius:50%;background:#7c3aed;display:inline-block;margin-right:5px;flex-shrink:0"></div>Harvard / Dana-Farber (61)</div>
       <div class="legend-item"><div style="width:10px;height:10px;border-radius:50%;background:#4361ee;display:inline-block;margin-right:5px;flex-shrink:0"></div>Weill Cornell Medicine (36)</div>
@@ -1208,14 +1222,14 @@ body {
     <div class="card-title">Co-Authorship Summary</div>
     <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-bottom:20px">
       <div style="background:#f8f5ff;border-radius:10px;padding:16px 20px;text-align:center;border:1.5px solid #e0d0ff">
-        <div style="font-size:1.6rem;font-weight:800;color:#57068C;line-height:1">4,456</div>
+        <div style="font-size:1.6rem;font-weight:800;color:#57068C;line-height:1">4,897</div>
         <div style="font-size:0.72rem;color:#888;margin-top:4px;text-transform:uppercase;letter-spacing:0.05em">Unique Co-authors</div>
         <div style="font-size:0.68rem;color:#bbb;margin-top:2px">Verified from PubMed TSV</div>
       </div>
       <div style="background:#f8f5ff;border-radius:10px;padding:16px 20px;text-align:center;border:1.5px solid #e0d0ff">
         <div style="font-size:1.6rem;font-weight:800;color:#57068C;line-height:1">8,667</div>
         <div style="font-size:0.72rem;color:#888;margin-top:4px;text-transform:uppercase;letter-spacing:0.05em">Author Appearances</div>
-        <div style="font-size:0.68rem;color:#bbb;margin-top:2px">All author slots across 487 papers</div>
+        <div style="font-size:0.68rem;color:#bbb;margin-top:2px">All author slots across 555 papers</div>
       </div>
       <div style="background:#f8f5ff;border-radius:10px;padding:16px 20px;text-align:center;border:1.5px solid #e0d0ff">
         <div style="font-size:1.6rem;font-weight:800;color:#57068C;line-height:1">17.8</div>
@@ -1243,7 +1257,7 @@ body {
 
 <div class="page" id="page-pcc">
   <div class="section-title">Perlmutter Cancer Center Collaborations</div>
-  <div class="section-sub">ABL collaboration with the NCI-designated Comprehensive Cancer Center at NYU · based on author analysis of all 487 publications · 2016–2025</div>
+  <div class="section-sub">ABL collaboration with the NCI-designated Comprehensive Cancer Center at NYU · based on author analysis of all 555 publications · 2015–2026</div>
 
   <!-- ── Key Stats ── -->
   <div class="stat-grid" style="grid-template-columns:repeat(4,1fr);margin-bottom:24px">
@@ -1271,7 +1285,7 @@ body {
   <div class="grid-2" style="margin-bottom:24px">
     <div class="card card-accent">
       <div class="card-title">ABL Publications — PCC vs Non-PCC Labs</div>
-      <div style="font-size:0.75rem;color:#888;margin-bottom:10px">Share of 487 total ABL papers that include at least one PCC lab author</div>
+      <div style="font-size:0.75rem;color:#888;margin-bottom:10px">Share of 555 total ABL papers that include at least one PCC lab author</div>
       <div class="chart-wrap" style="height:280px">
         <div class="dl-group"><button class="dl-btn" onclick="downloadCanvas('pccSharePie','ABL_PCC_share')" title="Download as PNG"><svg viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M8 2v8M5 7l3 3 3-3" stroke="#555" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/><rect x="2" y="11" width="12" height="2" rx="1" stroke="#555" stroke-width="1.4" fill="none"/></svg></button></div>
         <canvas id="pccSharePie"></canvas>
@@ -1307,7 +1321,7 @@ body {
 
       <!-- Streamgraph: PCC program collaboration over time -->
       <div style="margin-top:22px">
-        <div class="card-title" style="font-size:0.88rem;margin-bottom:3px">PCC Program Collaboration Flow · 2016–2025</div>
+        <div class="card-title" style="font-size:0.88rem;margin-bottom:3px">PCC Program Collaboration Flow · 2015–2026</div>
         <div style="font-size:0.73rem;color:#888;margin-bottom:10px">Program-tagged papers per year (non-unique) · hover to explore</div>
         <div style="position:relative">
           <svg id="pccStream-svg" style="width:100%;display:block"></svg>
@@ -1391,20 +1405,46 @@ body {
 const _sims = {};
 function _stopSim(key){if(_sims[key]){_sims[key].stop();delete _sims[key];}}
 
-const years = [2016,2017,2018,2019,2020,2021,2022,2023,2024,2025];
-const pubsByYear = [19,28,32,47,52,57,58,62,59,73];
+const years = (typeof DERIVED !== "undefined" && DERIVED.years) ? DERIVED.years.slice() : [2015,2016,2017,2018,2019,2020,2021,2022,2023,2024,2025,2026];
+const pubsByYear = (typeof DERIVED !== "undefined" && DERIVED.pubsByYear) ? DERIVED.pubsByYear.slice() : [17,19,28,32,47,52,57,58,62,60,73,50];
 
 const members = {
-  'Tsirigos':37.2,'Snuderl':16.6,'Khodadadi-J.':15.8,'Dolgalev':15.2,
-  'Serrano':11.3,'Heguy':10.1,'Vasudevaraja':9.2,'Coudray':7.8,
-  'Hao':6.2,'Blaney':4.3,'Sakellaropoulos':3.7,'Maura':3.7,
-  'Fenyö':3.5,'Maji':3.1,'Ziccheddu':1.6,'Ramaswami':1.6,'Dimartino':0.6
+  'Tsirigos':36.6,
+  'Snuderl':15.7,
+  'Khodadadi-J.':16.6,
+  'Dolgalev':15.9,
+  'Serrano':10.5,
+  'Heguy':10.1,
+  'Vasudevaraja':8.5,
+  'Coudray':7.6,
+  'Hao':6.8,
+  'Blaney':4.0,
+  'Sakellaropoulos':3.2,
+  'Maura':3.4,
+  'Fenyö':3.8,
+  'Maji':2.9,
+  'Ziccheddu':1.6,
+  'Ramaswami':1.4,
+  'Dimartino':0.5
 };
 const memberCounts = {
-  'Tsirigos':181,'Snuderl':81,'Khodadadi-J.':82,'Dolgalev':71,
-  'Serrano':55,'Heguy':49,'Vasudevaraja':45,'Coudray':38,
-  'Hao':30,'Blaney':21,'Sakellaropoulos':18,'Maura':18,
-  'Fenyö':17,'Maji':15,'Ziccheddu':8,'Ramaswami':8,'Dimartino':3
+  'Tsirigos':203,
+  'Snuderl':87,
+  'Khodadadi-J.':92,
+  'Dolgalev':88,
+  'Serrano':58,
+  'Heguy':56,
+  'Vasudevaraja':47,
+  'Coudray':42,
+  'Hao':38,
+  'Blaney':22,
+  'Sakellaropoulos':18,
+  'Maura':19,
+  'Fenyö':21,
+  'Maji':16,
+  'Ziccheddu':9,
+  'Ramaswami':8,
+  'Dimartino':3
 };
 
 let themes = {};
@@ -1459,9 +1499,7 @@ function _buildResearchThemeStats() {
 }
 
 const journals = {
-  'Nat Commun':34,'Clin Cancer Res':15,'Cancer Discov':15,'Nature':13,
-  'Sci Rep':10,'Cell':10,'Cell Rep':10,'J Neuropathol Exp Neurol':9,'eLife':9,
-  'Mod Pathol':8,'Sci Adv':8,'Cancer Res':8,'Nat Immunol':7,'PNAS':7,'J Exp Med':7
+  'Nat Commun':35,'Clin Cancer Res':15,'Cancer Discov':16,'Nature':18,'Sci Rep':10,'Cell':13,'Cell Rep':11,'J Neuropathol Exp Neurol':9,'eLife':10,'Mod Pathol':9,'Sci Adv':9,'Cancer Res':9,'Nat Immunol':8,'PNAS':8,'J Exp Med':8
 };
 
 // ─── CHART.JS DEFAULTS ───────────────────────────────────────────────────────
@@ -1664,7 +1702,7 @@ function initOverviewCharts() {
 
 
   // Cumulative publications line chart
-  const cumulativePubs = [19,47,79,126,178,235,293,355,414,487];
+  const cumulativePubs = (typeof DERIVED !== "undefined" && DERIVED.cumulativePubs) ? DERIVED.cumulativePubs.slice() : [17,36,64,96,143,195,252,310,372,432,505,555];
   if(document.getElementById('cumulativeChart'))
   new Chart(document.getElementById('cumulativeChart'), {
     type: 'line',
@@ -1966,7 +2004,7 @@ function initOverviewInteractions() {
       const jChart = jLabelsEl ? Chart.getChart(jLabelsEl) : null;
       let journalsInTier = [];
       const jLabs=['Nat Commun','Cancer Discov','Clin Cancer Res','Nature','Cell','Cell Rep','Sci Rep','Elife','J Neuropathol Exp Neurol','Sci Adv','Cancer Res','Mod Pathol','Nat Immunol','Cancer Cell','Proc Natl Acad Sci U S A','J Exp Med','Nat Cancer','Mol Cell','J Clin Invest','J Invest Dermatol'];
-      const jCts=[34,15,15,13,10,10,10,9,9,8,8,8,7,7,7,7,6,6,6,5];
+      const jCts=[35,16,15,18,13,11,10,10,9,9,9,9,8,9,8,8,6,6,6,5];
       const jIFs=[15.7,28.2,11.5,50.5,45.5,6.9,3.8,6.4,4.0,11.7,6.2,4.6,27.0,24.7,11.1,11.1,22.7,14.5,13.3,7.2];
       jLabs.forEach((l,i) => { if(getTierLocal(jIFs[i])===tierN) journalsInTier.push({label:l,count:jCts[i],IF:jIFs[i]}); });
       journalsInTier.sort((a,b)=>b.count-a.count);
@@ -2199,7 +2237,7 @@ function initThemeInteractions() {
       const color = ch.data.datasets[0].borderColor[pts[0].index];
       const total = themes[key];
       const maxV = Math.max(...years.map(y=>themeByYear[y]?.[key]||0));
-      _showModal(MID, _mHead(MID, key, `${total} total papers 2016–2025`, color) +
+      _showModal(MID, _mHead(MID, key, `${total} total papers 2015–2026`, color) +
         years.map((y,i)=>{const v=themeByYear[y]?.[key]||0;
           return _bar(v,maxV||1,color,String(y),`${v} · ${pubsByYear[i]>0?((v/pubsByYear[i])*100).toFixed(0):0}% of that year`, { theme: key, year: String(y) });
         }).join('') +
@@ -2266,7 +2304,7 @@ function initThemeInteractions() {
       const color = ch.data.datasets[0].borderColor[pts[0].index];
       const total = dstats.counts[key] || 0;
       const maxV = Math.max(...years.map(y => (dstats.byYear[y] || {})[key] || 0));
-      _showModal(MID, _mHead(MID, key, `${total} total paper tags 2016–2025`, color) +
+      _showModal(MID, _mHead(MID, key, `${total} total paper tags 2015–2026`, color) +
         years.map(y => {
           const v = (dstats.byYear[y] || {})[key] || 0;
           const yrTotal = dKeys.reduce((s, k) => s + _diseaseYearValue(dstats.byYear, y, k, dstats.topKeys), 0);
@@ -2377,7 +2415,7 @@ function initNetworkInteractions() {
         _statGrid([
           ['Joint Papers with ABL', String(pubs), '#57068C'],
           ['Department', dept, '#333'],
-          ['% of All ABL Papers', ((pubs/487)*100).toFixed(1)+'%', '#4361ee'],
+          ['% of All ABL Papers', ((pubs/555)*100).toFixed(1)+'%', '#4361ee'],
           ['Research Area', area, '#888']
         ]) +
         _pubFilterBtn(`View ${pubs} papers with ${labName}`, { pi: piKey }) +
@@ -2395,7 +2433,7 @@ function initPCCInteractions() {
   const progMems = _pccMemberList();
   const progABL = _pccAblCoAuthList();
   const progCols = progColor;
-  const yrs = (typeof pccYears !== 'undefined') ? pccYears : [2016,2017,2018,2019,2020,2021,2022,2023,2024,2025];
+  const yrs = (typeof pccYears !== 'undefined') ? pccYears : [2015,2016,2017,2018,2019,2020,2021,2022,2023,2024,2025,2026];
 
   // pccSharePie — click slice
   const sp = document.getElementById('pccSharePie');
@@ -2536,7 +2574,7 @@ function initThemeCharts() {
   const catalog = (typeof publicationsCatalog !== 'undefined') ? publicationsCatalog : [];
   const taggedPapers = catalog.length
     ? catalog.filter(p => (p.themes || []).length > 0).length
-    : 487;
+    : 555;
 
   const rtTagged = document.getElementById('rtStatTagged');
   const rtThemes = document.getElementById('rtStatThemes');
@@ -2843,7 +2881,7 @@ function initDiseaseThemeCharts() {
 
 // ─── JOURNAL PIE CHART ───────────────────────────────────────────────────────
 function initJournalCharts() {
-  const years = [2016,2017,2018,2019,2020,2021,2022,2023,2024,2025];
+  const years = (typeof DERIVED !== "undefined" && DERIVED.years) ? DERIVED.years.slice() : [2015,2016,2017,2018,2019,2020,2021,2022,2023,2024,2025,2026];
 
   // ── Data ──────────────────────────────────────────────────────────────────
   const jLabels = [
@@ -2852,7 +2890,7 @@ function initJournalCharts() {
     'Sci Adv','Cancer Res','Mod Pathol','Nat Immunol','Cancer Cell',
     'Proc Natl Acad Sci U S A','J Exp Med','Nat Cancer','Mol Cell','J Clin Invest','J Invest Dermatol'
   ];
-  const jCounts = [34,15,15,13,10,10,10,9,9,8,8,8,7,7,7,7,6,6,6,5];
+  const jCounts = [35,16,15,18,13,11,10,10,9,9,9,9,8,9,8,8,6,6,6,5];
   const jIF     = [15.7,28.2,11.5,50.5,45.5,6.9,3.8,6.4,4.0,11.7,6.2,4.6,27.0,24.7,11.1,11.1,22.7,14.5,13.3,7.2];
 
   const tierColor = {
@@ -3074,6 +3112,11 @@ const nyuNodes = [
   {id:'Bu',dept:'Medicine',area:'Oncology',pubs:5},
 ];
 
+if (typeof DERIVED !== "undefined" && DERIVED.nodePubs) {
+  nyuNodes.forEach(n => { if (DERIVED.nodePubs[n.id] != null) n.pubs = DERIVED.nodePubs[n.id]; });
+}
+
+
 const deptColor = {
   'Pathology':'#e63946','Cell Biology':'#4361ee','Biochemistry':'#2dc653',
   'Medicine':'#f4a261','Neurosurgery':'#118ab2',
@@ -3106,6 +3149,14 @@ const nyuCrossLinks = [
   {source:'Landau',     target:'Levine',              weight:2},
   {source:'Neel',       target:'Pass',                weight:3},
 ];
+
+if (typeof DERIVED !== "undefined" && DERIVED.crossWeights) {
+  nyuCrossLinks.forEach(l => {
+    const w = DERIVED.crossWeights[l.source + "|" + l.target];
+    if (w != null) l.weight = w;
+  });
+}
+
 
 // External nodes
 const extNodes = [
@@ -3141,6 +3192,11 @@ const extNodes = [
   {id:'Ruggles_ext',label:'Ruggles',count:5,domain:'Other'},
 ];
 
+if (typeof DERIVED !== "undefined" && DERIVED.extCounts) {
+  extNodes.forEach(n => { if (DERIVED.extCounts[n.id] != null) n.count = DERIVED.extCounts[n.id]; });
+}
+
+
 const domainColorExt = {
   'Cancer/Oncology':'#e63946','Genomics/Structural':'#4361ee',
   'Immunology':'#7b2d8b','Myeloma/Hematology':'#f4a261',
@@ -3162,20 +3218,36 @@ const bridgeLinks = [
   {source:'Aifantis_ext',target:'Ntziachristos_ext',weight:3,color:'#e63946'},
 ];
 
+if (typeof DERIVED !== "undefined" && DERIVED.bridgeWeights) {
+  bridgeLinks.forEach(l => {
+    const w = DERIVED.bridgeWeights[l.source + "|" + l.target];
+    if (w != null) l.weight = w;
+  });
+}
+
+
 // Dept/year stacked bar data
-const deptYears = [2016,2017,2018,2019,2020,2021,2022,2023,2024,2025];
+const deptYears = (typeof DERIVED !== "undefined" && DERIVED.years) ? DERIVED.years.slice() : [2015,2016,2017,2018,2019,2020,2021,2022,2023,2024,2025,2026];
 const deptYearDatasets = [
-  {label:'Pathology (18 labs)',     color:'#e63946',data:[4,7,5,15,15,11,15,23,18,18]},
-  {label:'Medicine (19 labs)',      color:'#f4a261',data:[0,1,3,4,4,14,5,19,12,12]},
-  {label:'Biochemistry (6 labs)',   color:'#2dc653',data:[0,1,0,1,4,1,3,2,5,1]},
-  {label:'Cell Biology (6 labs)',   color:'#4361ee',data:[0,0,0,2,7,4,4,6,4,5]},
-  {label:'Neuroscience (5 labs)',   color:'#fb5607',data:[0,0,0,0,0,0,2,0,3,0]},
-  {label:'Neurology (4 labs)',      color:'#ff006e',data:[0,0,1,0,1,0,2,2,0,0]},
-  {label:'Neurosurgery (2 labs)',   color:'#118ab2',data:[1,2,1,3,2,1,1,2,0,0]},
-  {label:'Cardiothoracic (2 labs)', color:'#06d6a0',data:[0,0,1,0,0,0,1,2,2,3]},
-  {label:'Dermatology (3 labs)',    color:'#c77dff',data:[0,0,0,0,1,0,0,2,0,1]},
-  {label:'Other (28 labs)',         color:'#ffd166',data:[0,2,2,2,2,1,2,2,3,5]},
+  {label:'Pathology (18 labs)',     color:'#e63946',data:[3,4,7,5,15,15,11,15,23,18,18,22]},
+  {label:'Medicine (19 labs)',      color:'#f4a261',data:[3,0,1,3,4,4,14,5,19,12,12,18]},
+  {label:'Biochemistry (6 labs)',   color:'#2dc653',data:[0,0,1,0,1,4,1,3,2,5,1,1]},
+  {label:'Cell Biology (6 labs)',   color:'#4361ee',data:[0,0,0,0,2,7,4,4,6,4,5,0]},
+  {label:'Neuroscience (5 labs)',   color:'#fb5607',data:[0,0,0,0,0,0,0,2,0,3,0,2]},
+  {label:'Neurology (4 labs)',      color:'#ff006e',data:[0,0,0,1,0,1,0,2,2,0,0,0]},
+  {label:'Neurosurgery (2 labs)',   color:'#118ab2',data:[0,1,2,1,3,2,1,1,2,0,0,1]},
+  {label:'Cardiothoracic (2 labs)', color:'#06d6a0',data:[0,0,0,1,0,0,0,1,2,2,3,0]},
+  {label:'Dermatology (3 labs)',    color:'#c77dff',data:[1,0,0,0,0,1,0,0,2,0,1,0]},
+  {label:'Other (28 labs)',         color:'#ffd166',data:[0,0,2,2,2,2,1,2,2,3,5,0]},
 ];
+
+if (typeof DERIVED !== "undefined" && DERIVED.deptSeries) {
+  deptYearDatasets.forEach(ds => {
+    const key = ds.label.split(" (")[0];
+    if (DERIVED.deptSeries[key]) ds.data = DERIVED.deptSeries[key].slice();
+  });
+}
+
 
 // ─── HELPER: D3 DRAG ─────────────────────────────────────────────────────────
 function makeDrag(simulation) {
@@ -3194,7 +3266,7 @@ function buildNetworkA() {
   svg.selectAll('*').remove();
 
   // Deep-copy nodes and links to prevent D3 from mutating global arrays
-  const ablHub = {id:'ABL',pubs:487,dept:'HUB',area:'ABL Core',fx:W/2,fy:H/2};
+  const ablHub = {id:'ABL',pubs:555,dept:'HUB',area:'ABL Core',fx:W/2,fy:H/2};
   const allNodes = [ablHub, ...nyuNodes.map(n=>({id:n.id,dept:n.dept,area:n.area,pubs:n.pubs}))];
   const spokeLinks = nyuNodes.map(n=>({source:'ABL',target:n.id,weight:n.pubs,type:'spoke'}));
   const crossLinks = nyuCrossLinks.map(l=>({...l,type:'cross'}));
@@ -3277,7 +3349,7 @@ function buildNetworkA() {
       _statGrid([
         ['Joint Papers with ABL', String(d.pubs), '#57068C'],
         ['Department', d.dept, col],
-        ['% of All ABL Papers', ((d.pubs / 487) * 100).toFixed(1) + '%', '#4361ee'],
+        ['% of All ABL Papers', ((d.pubs / 555) * 100).toFixed(1) + '%', '#4361ee'],
         ['Research Area', d.area, '#888']
       ]) +
       _pubFilterBtn(`View ${d.pubs} papers with ${d.id}`, { pi: _piFilterKey(d.id) }) +
@@ -3711,7 +3783,7 @@ function _fmtLegendCount(count, total) {
 
 function _pccSummary() {
   const base = (typeof PCC_SUMMARY !== 'undefined') ? { ...PCC_SUMMARY } : {
-    totalPapers: 487, pccPapers: 0, nonPccPapers: 487, pccSharePct: 0,
+    totalPapers: 555, pccPapers: 0, nonPccPapers: 555, pccSharePct: 0,
     pccLabsCollaborated: 52, nyuPccLabs: 52, nyuNonPccLabs: 47, programCount: 5
   };
   const catalog = (typeof publicationsCatalog !== 'undefined') ? publicationsCatalog : [];
@@ -3978,7 +4050,7 @@ function _updatePccUiLabels() {
   const s = _pccSummary();
   const pubSub = document.getElementById('pub-section-sub');
   if (pubSub) {
-    pubSub.textContent = `All ${s.totalPapers} ABL-affiliated publications · 2016–2025 · ${s.pccPapers} with PCC co-authors (CCSG membership matched; ABL core & non-PCC members excluded)`;
+    pubSub.textContent = `All ${s.totalPapers} ABL-affiliated publications · 2015–2026 · ${s.pccPapers} with PCC co-authors (CCSG membership matched; ABL core & non-PCC members excluded)`;
   }
   const netPcc = _nyuNetworkPccMemberCount();
   const netCap = document.getElementById('net-pcc-caption');
@@ -4408,7 +4480,7 @@ function initPCCCharts() {
     const iH = H - margin.top - margin.bottom;
 
     const progs = ['ECC','MEL','TI','CGD','CCB'];  // stacking order (smallest → largest)
-    const years = [2016,2017,2018,2019,2020,2021,2022,2023,2024,2025];
+    const years = (typeof DERIVED !== "undefined" && DERIVED.years) ? DERIVED.years.slice() : [2015,2016,2017,2018,2019,2020,2021,2022,2023,2024,2025,2026];
 
     // Build series array for d3.stack
     const tableData = years.map((yr, i) => {
@@ -4682,19 +4754,19 @@ function initPCCCharts() {
 function buildUSMap(svgId, containerId, tooltipId) {
   svgId = svgId || 'us-map-svg'; containerId = containerId || 'us-map-container'; tooltipId = tooltipId || 'us-map-tooltip';
   const institutions = [
-    {name:'NYU Langone / ABL',          city:'New York, NY',           lat:40.742, lon:-73.974,  count:487, color:'#57068C'},
-    {name:'Memorial Sloan Kettering',   city:'New York, NY',           lat:40.764, lon:-73.956,  count:72,  color:'#e63946'},
-    {name:'Harvard / Dana-Farber',      city:'Boston, MA',             lat:42.337, lon:-71.107,  count:61,  color:'#7c3aed'},
-    {name:'Weill Cornell Medicine',     city:'New York, NY',           lat:40.765, lon:-73.954,  count:36,  color:'#4361ee'},
-    {name:'Columbia University',        city:'New York, NY',           lat:40.808, lon:-73.963,  count:34,  color:'#f4a261'},
-    {name:'MD Anderson Cancer Center',  city:'Houston, TX',            lat:29.707, lon:-95.397,  count:33,  color:'#e76f51'},
-    {name:'Mount Sinai',                city:'New York, NY',           lat:40.790, lon:-73.952,  count:30,  color:'#0a9396'},
-    {name:'MIT / Broad Institute',      city:'Cambridge, MA',          lat:42.362, lon:-71.089,  count:27,  color:'#118ab2'},
-    {name:'Johns Hopkins',              city:'Baltimore, MD',           lat:39.299, lon:-76.593,  count:23,  color:'#264653'},
+    {name:'NYU Langone / ABL',          city:'New York, NY',           lat:40.742, lon:-73.974,  count:555, color:'#57068C'},
+    {name:'Memorial Sloan Kettering',   city:'New York, NY',           lat:40.764, lon:-73.956,  count:81,  color:'#e63946'},
+    {name:'Harvard / Dana-Farber',      city:'Boston, MA',             lat:42.337, lon:-71.107,  count:70,  color:'#7c3aed'},
+    {name:'Weill Cornell Medicine',     city:'New York, NY',           lat:40.765, lon:-73.954,  count:60,  color:'#4361ee'},
+    {name:'Columbia University',        city:'New York, NY',           lat:40.808, lon:-73.963,  count:42,  color:'#f4a261'},
+    {name:'MD Anderson Cancer Center',  city:'Houston, TX',            lat:29.707, lon:-95.397,  count:39,  color:'#e76f51'},
+    {name:'Mount Sinai',                city:'New York, NY',           lat:40.790, lon:-73.952,  count:41,  color:'#0a9396'},
+    {name:'MIT / Broad Institute',      city:'Cambridge, MA',          lat:42.362, lon:-71.089,  count:38,  color:'#118ab2'},
+    {name:'Johns Hopkins',              city:'Baltimore, MD',           lat:39.299, lon:-76.593,  count:26,  color:'#264653'},
     {name:'NIH / NCI',                  city:'Bethesda, MD',           lat:38.999, lon:-77.102,  count:21,  color:'#2dc653'},
-    {name:'UPenn / Penn Medicine',      city:'Philadelphia, PA',       lat:39.950, lon:-75.196,  count:18,  color:'#f72585'},
-    {name:'UC San Francisco',           city:'San Francisco, CA',      lat:37.763, lon:-122.458, count:16,  color:'#ffd166'},
-    {name:'Stanford University',        city:'Stanford, CA',           lat:37.424, lon:-122.170, count:12,  color:'#43aa8b'},
+    {name:'UPenn / Penn Medicine',      city:'Philadelphia, PA',       lat:39.950, lon:-75.196,  count:22,  color:'#f72585'},
+    {name:'UC San Francisco',           city:'San Francisco, CA',      lat:37.763, lon:-122.458, count:8,  color:'#ffd166'},
+    {name:'Stanford University',        city:'Stanford, CA',           lat:37.424, lon:-122.170, count:13,  color:'#43aa8b'},
   ];
 
   const svgEl = document.getElementById(svgId);
@@ -4842,7 +4914,7 @@ function buildUSMap(svgId, containerId, tooltipId) {
       // Tooltip events
       circle.addEventListener('mouseenter', () => {
         tooltip.innerHTML = `<strong>${inst.name}</strong><br>${inst.city}<br>
-          <span style="opacity:0.85">${isHub ? '487 total ABL publications' : inst.count + ' papers with ABL authors'}</span>`;
+          <span style="opacity:0.85">${isHub ? '555 total ABL publications' : inst.count + ' papers with ABL authors'}</span>`;
         tooltip.style.opacity = '1';
       });
       circle.addEventListener('mousemove', e => {
@@ -4981,7 +5053,7 @@ function initPublications() {
   if (_pubData) { applyPubFilters(); return; }
   const list = document.getElementById('pub-list');
   if (!list) return;
-  list.innerHTML = '<div class="pub-loading">Loading 487 publications…</div>';
+  list.innerHTML = '<div class="pub-loading">Loading 555 publications…</div>';
   const useEmbedded = () => {
     _pubData = publicationsCatalog;
     _pubMeta = (typeof publicationsMeta !== 'undefined') ? publicationsMeta : null;
@@ -5185,7 +5257,7 @@ function renderPublications() {
   const countEl = document.getElementById('pub-count');
   if (!list) return;
   const total = _pubFiltered.length;
-  const allTotal = (typeof publicationsMeta !== 'undefined' && publicationsMeta.total) ? publicationsMeta.total : 487;
+  const allTotal = (typeof publicationsMeta !== 'undefined' && publicationsMeta.total) ? publicationsMeta.total : 555;
   const pages = Math.ceil(total / _pubPerPage) || 1;
   if (_pubPage > pages) _pubPage = pages;
   const pageInfo = pages > 1 ? ` · page <strong>${_pubPage}</strong> of <strong>${pages}</strong>` : '';
@@ -5266,8 +5338,7 @@ function renderRepoLogos(containerId, size) {
     : size === 'about' ? 'repo-logo-tile about' : 'repo-logo-tile';
   el.innerHTML = sources.map(item => `
     <a class="${tileClass}" href="${item.href}" target="_blank" rel="noopener" title="${item.label}">
-      <img src="${item.src}" alt="${item.label}" loading="lazy"
-        onerror="this.onerror=null;this.src='${item.fallback}';">
+      <span class="repo-logo-mark" style="color:${item.color || '#57068C'}">${item.short || item.label}</span>
     </a>`).join('');
 }
 
@@ -5489,7 +5560,7 @@ window.addEventListener('load', () => {
 
 <div class="page" id="page-publications">
   <div class="section-title">Publications</div>
-  <div class="section-sub" id="pub-section-sub">All 487 ABL-affiliated publications · 2016–2025 · — with PCC co-authors (CCSG membership matched)</div>
+  <div class="section-sub" id="pub-section-sub">All 555 ABL-affiliated publications · 2015–2026 · — with PCC co-authors (CCSG membership matched)</div>
 
   <div class="pub-toolbar">
     <div class="pub-search-wrap">
@@ -6725,7 +6796,7 @@ window.addEventListener('load', () => {
     <rect x="5" y="316" width="188" height="158" rx="8" fill="white" stroke="#e8e8ee" stroke-width="1.5" filter="url(#rcs)"/>
     <rect x="5" y="316" width="5" height="158" rx="2" fill="#57068C"/>
     <text x="15" y="338" font-size="11" font-weight="700" fill="#1a1a2e" font-family="DM Sans,Arial,sans-serif">&#x1F4C4; Publications</text>
-    <text x="15" y="356" font-size="10" fill="#444" font-family="DM Sans,Arial,sans-serif">&#x2713; 487 papers (2016&#x2013;2025)</text>
+    <text x="15" y="356" font-size="10" fill="#444" font-family="DM Sans,Arial,sans-serif">&#x2713; 555 papers (2015&#x2013;2026)</text>
     <text x="15" y="370" font-size="10" fill="#444" font-family="DM Sans,Arial,sans-serif">&#x2713; 73 papers in 2025</text>
     <text x="15" y="384" font-size="10" fill="#444" font-family="DM Sans,Arial,sans-serif">&#x2713; 154 NYU lab affiliations</text>
     <text x="15" y="398" font-size="10" fill="#444" font-family="DM Sans,Arial,sans-serif">&#x2713; 102 verified faculty labs</text>
@@ -6944,7 +7015,7 @@ window.addEventListener('load', () => {
     </div>
 
     <div class="card" style="border-left:4px solid #57068C">
-      <div class="card-title">Publications 2016–2025</div>
+      <div class="card-title">Publications 2015–2026</div>
       <div style="font-size:0.83rem;color:#555;line-height:1.7;margin-bottom:16px">
         Full curated list of all ABL-affiliated publications from 2016 to 2025, sorted by date, on PubMed Collections.
       </div>
@@ -6952,8 +7023,8 @@ window.addEventListener('load', () => {
         <div style="font-size:2.2rem">📚</div>
         <div>
           <div style="font-size:0.65rem;color:#aaa;text-transform:uppercase;letter-spacing:0.08em">PubMed Collection</div>
-          <div style="font-weight:800;font-size:1.3rem;color:#57068C;font-family:'DM Serif Display',serif;line-height:1.1">487</div>
-          <div style="font-size:0.72rem;color:#888">papers · 2016–2025</div>
+          <div style="font-weight:800;font-size:1.3rem;color:#57068C;font-family:'DM Serif Display',serif;line-height:1.1">555</div>
+          <div style="font-size:0.72rem;color:#888">papers · 2015–2026</div>
         </div>
       </div>
       <a href="https://pubmed.ncbi.nlm.nih.gov/collections/63526440/?sort=pubdate" target="_blank"
@@ -6997,10 +7068,6 @@ window.addEventListener('load', () => {
         <div style="display:flex;flex-direction:column;align-items:center;gap:8px">
           <div style="width:88px;height:88px;border-radius:50%;overflow:hidden;border:3px solid #f4a261;box-shadow:0 2px 10px #f4a26144"><img src="data:image/jpeg;base64,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" style="width:100%;height:100%;object-fit:cover;object-position:center 20%"/></div>
           <div style="text-align:center;font-size:0.72rem;font-weight:600;color:#1a1a2e;line-height:1.35">Yuan<br>Hao</div>
-        </div>
-        <div style="display:flex;flex-direction:column;align-items:center;gap:8px">
-          <div style="width:88px;height:88px;border-radius:50%;overflow:hidden;border:3px solid #264653;box-shadow:0 2px 10px #26465344"><img src="data:image/jpeg;base64,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" style="width:100%;height:100%;object-fit:cover;object-position:center 20%"/></div>
-          <div style="text-align:center;font-size:0.72rem;font-weight:600;color:#1a1a2e;line-height:1.35">Ai<br>Ra Idrous</div>
         </div>
         <div style="display:flex;flex-direction:column;align-items:center;gap:8px">
           <div style="width:88px;height:88px;border-radius:50%;overflow:hidden;border:3px solid #e76f51;box-shadow:0 2px 10px #e76f5144"><img src="data:image/jpeg;base64,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" style="width:100%;height:100%;object-fit:cover;object-position:center 20%"/></div>
@@ -7055,6 +7122,26 @@ window.addEventListener('load', () => {
           <div style="text-align:center;font-size:0.72rem;font-weight:600;color:#1a1a2e;line-height:1.35">Betul<br>Akgol</div>
         </div>
         <div style="display:flex;flex-direction:column;align-items:center;gap:8px">
+          <div style="width:88px;height:88px;border-radius:50%;overflow:hidden;border:3px solid #f3722c;box-shadow:0 2px 10px #f3722c44"><img src="_photos/hyunwoo-cho.jpg" alt="Hyunwoo Cho" style="width:100%;height:100%;object-fit:cover;object-position:center 20%"/></div>
+          <div style="text-align:center;font-size:0.72rem;font-weight:600;color:#1a1a2e;line-height:1.35">Hyunwoo<br>Cho</div>
+        </div>
+        <div style="display:flex;flex-direction:column;align-items:center;gap:8px">
+          <div style="width:88px;height:88px;border-radius:50%;overflow:hidden;border:3px solid #f3722c;box-shadow:0 2px 10px #f3722c44"><img src="_photos/dylan-gagler.jpg" alt="Dylan Gagler" style="width:100%;height:100%;object-fit:cover;object-position:center 20%"/></div>
+          <div style="text-align:center;font-size:0.72rem;font-weight:600;color:#1a1a2e;line-height:1.35">Dylan<br>Gagler</div>
+        </div>
+        <div style="display:flex;flex-direction:column;align-items:center;gap:8px">
+          <div style="width:88px;height:88px;border-radius:50%;overflow:hidden;border:3px solid #f3722c;box-shadow:0 2px 10px #f3722c44"><img src="_photos/yuhan-hao.jpg" alt="Yuhan Hao" style="width:100%;height:100%;object-fit:cover;object-position:center 20%"/></div>
+          <div style="text-align:center;font-size:0.72rem;font-weight:600;color:#1a1a2e;line-height:1.35">Yuhan<br>Hao</div>
+        </div>
+        <div style="display:flex;flex-direction:column;align-items:center;gap:8px">
+          <div style="width:88px;height:88px;border-radius:50%;overflow:hidden;border:3px solid #f3722c;box-shadow:0 2px 10px #f3722c44"><img src="_photos/ai-ra-idrous.jpg" alt="Ai Ra Idrous" style="width:100%;height:100%;object-fit:cover;object-position:center 20%"/></div>
+          <div style="text-align:center;font-size:0.72rem;font-weight:600;color:#1a1a2e;line-height:1.35">Ai<br>Ra Idrous</div>
+        </div>
+        <div style="display:flex;flex-direction:column;align-items:center;gap:8px">
+          <div style="width:88px;height:88px;border-radius:50%;overflow:hidden;border:3px solid #f3722c;box-shadow:0 2px 10px #f3722c44"><img src="_photos/shaowen-jiang.jpg" alt="Shaowen Jiang" style="width:100%;height:100%;object-fit:cover;object-position:center 20%"/></div>
+          <div style="text-align:center;font-size:0.72rem;font-weight:600;color:#1a1a2e;line-height:1.35">Shaowen<br>Jiang</div>
+        </div>
+        <div style="display:flex;flex-direction:column;align-items:center;gap:8px">
           <div style="width:88px;height:88px;border-radius:50%;overflow:hidden;border:3px solid #4361ee;box-shadow:0 2px 10px #4361ee44;background:#4361ee;display:flex;align-items:center;justify-content:center"><span style="color:white;font-size:1.35rem;font-weight:700;letter-spacing:0.02em;font-family:'DM Sans',sans-serif">SK</span></div>
           <div style="text-align:center;font-size:0.72rem;font-weight:600;color:#1a1a2e;line-height:1.35">Steve<br>Kelly</div>
         </div>
@@ -7063,23 +7150,38 @@ window.addEventListener('load', () => {
           <div style="text-align:center;font-size:0.72rem;font-weight:600;color:#1a1a2e;line-height:1.35">Tenzin<br>Lhakhang</div>
         </div>
         <div style="display:flex;flex-direction:column;align-items:center;gap:8px">
-          <div style="width:88px;height:88px;border-radius:50%;overflow:hidden;border:3px solid #9b5de5;box-shadow:0 2px 10px #9b5de544"><img src="_photos/bettina-nadorp.jpg" alt="Bettina Nadorp" style="width:100%;height:100%;object-fit:cover;object-position:center 20%"/></div>
-          <div style="text-align:center;font-size:0.72rem;font-weight:600;color:#1a1a2e;line-height:1.35">Bettina<br>Nadorp</div>
+          <div style="width:88px;height:88px;border-radius:50%;overflow:hidden;border:3px solid #f3722c;box-shadow:0 2px 10px #f3722c44"><img src="_photos/pamela-mishra.jpg" alt="Pamela Mishra" style="width:100%;height:100%;object-fit:cover;object-position:center 20%"/></div>
+          <div style="text-align:center;font-size:0.72rem;font-weight:600;color:#1a1a2e;line-height:1.35">Pamela<br>Mishra</div>
+        </div>
+        <div style="display:flex;flex-direction:column;align-items:center;gap:8px">
+          <div style="width:88px;height:88px;border-radius:50%;overflow:hidden;border:3px solid #f3722c;box-shadow:0 2px 10px #f3722c44"><img src="_photos/nina-murrell.jpg" alt="Nina Murrell" style="width:100%;height:100%;object-fit:cover;object-position:center 20%"/></div>
+          <div style="text-align:center;font-size:0.72rem;font-weight:600;color:#1a1a2e;line-height:1.35">Nina<br>Murrell</div>
+        </div>
+        
+        <div style="display:flex;flex-direction:column;align-items:center;gap:8px">
+          <div style="width:88px;height:88px;border-radius:50%;overflow:hidden;border:3px solid #f3722c;box-shadow:0 2px 10px #f3722c44"><img src="_photos/aleksandr-prystupa.jpg" alt="Aleksandr Prystupa" style="width:100%;height:100%;object-fit:cover;object-position:center 20%"/></div>
+          <div style="text-align:center;font-size:0.72rem;font-weight:600;color:#1a1a2e;line-height:1.35">Aleksandr<br>Prystupa</div>
+        </div>
+        <div style="display:flex;flex-direction:column;align-items:center;gap:8px">
+          <div style="width:88px;height:88px;border-radius:50%;overflow:hidden;border:3px solid #f3722c;box-shadow:0 2px 10px #f3722c44;background:#fff7f2;display:flex;align-items:center;justify-content:center;font-family:'DM Sans',sans-serif;font-weight:700;color:#c2410c;font-size:1.15rem">GS</div>
+          <div style="text-align:center;font-size:0.72rem;font-weight:600;color:#1a1a2e;line-height:1.35">Gunjan<br>Sethia</div>
         </div>
         <div style="display:flex;flex-direction:column;align-items:center;gap:8px">
           <div style="width:88px;height:88px;border-radius:50%;overflow:hidden;border:3px solid #43aa8b;box-shadow:0 2px 10px #43aa8b44"><img src="_photos/ikjot-sidhu.png" alt="Ikjot Sidhu" style="width:100%;height:100%;object-fit:cover;object-position:center 20%"/></div>
           <div style="text-align:center;font-size:0.72rem;font-weight:600;color:#1a1a2e;line-height:1.35">Ikjot<br>Sidhu</div>
         </div>
-<div style="display:flex;flex-direction:column;align-items:center;gap:8px">
+        <div style="display:flex;flex-direction:column;align-items:center;gap:8px">
           <div style="width:88px;height:88px;border-radius:50%;overflow:hidden;border:3px solid #577590;box-shadow:0 2px 10px #57759044"><img src="data:image/jpeg;base64,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" style="width:100%;height:100%;object-fit:cover;object-position:center 20%"/></div>
           <div style="text-align:center;font-size:0.72rem;font-weight:600;color:#1a1a2e;line-height:1.35">Varshini<br>Vasudavaraja</div>
+        </div>
+        <div style="display:flex;flex-direction:column;align-items:center;gap:8px">
+          <div style="width:88px;height:88px;border-radius:50%;overflow:hidden;border:3px solid #f3722c;box-shadow:0 2px 10px #f3722c44"><img src="_photos/kelsey-zhu.jpg" alt="Kelsey Zhu" style="width:100%;height:100%;object-fit:cover;object-position:center 20%"/></div>
+          <div style="text-align:center;font-size:0.72rem;font-weight:600;color:#1a1a2e;line-height:1.35">Kelsey<br>Zhu</div>
         </div>
     </div>
   </div>
 
-
-
 </div>
 
-
 </body>
+</html>

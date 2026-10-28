@@ -10,7 +10,7 @@ python3 build_dashboard.py
 
 That rewrites `data/derived.js` and the PCC lab sizes in `data/pcc_dashboard.js`. `index.html` reads `derived.js` for the year charts, NYU network node sizes, collaborator-node sizes, link weights, and the department-by-year series. The set of labs and which links exist stays in `index.html`; only the numbers are replaced.
 
-Year window is 2015–2026, set as `YEAR_START` / `YEAR_END` in `build_dashboard.py`. Current catalog size is 555 papers.
+Year window is 2015–2026, set as `YEAR_START` / `YEAR_END` in `build_dashboard.py`. Current catalog size is 563 papers.
 
 ## Where the data lives
 

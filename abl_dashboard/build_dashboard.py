@@ -250,12 +250,12 @@ def wire_html(html):
     )
     html = re.sub(
         r'const pubsByYear = \[[^\]]+\];',
-        'const pubsByYear = (typeof DERIVED !== "undefined" && DERIVED.pubsByYear) ? DERIVED.pubsByYear.slice() : [17,19,28,32,47,52,57,58,62,60,73,50];',
+        'const pubsByYear = (typeof DERIVED !== "undefined" && DERIVED.pubsByYear) ? DERIVED.pubsByYear.slice() : [17,19,28,32,47,52,57,58,62,60,73,58];',
         html,
     )
     html = re.sub(
         r'const cumulativePubs = \[[^\]]+\];',
-        'const cumulativePubs = (typeof DERIVED !== "undefined" && DERIVED.cumulativePubs) ? DERIVED.cumulativePubs.slice() : [17,36,64,96,143,195,252,310,372,432,505,555];',
+        'const cumulativePubs = (typeof DERIVED !== "undefined" && DERIVED.cumulativePubs) ? DERIVED.cumulativePubs.slice() : [17,36,64,96,143,195,252,310,372,432,505,563];',
         html,
     )
     apply_nodes = '''

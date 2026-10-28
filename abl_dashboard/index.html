@@ -13,6 +13,8 @@
 <script src="data/network_dashboard.js"></script>
 <script src="data/derived.js"></script>
 <script src="assets/repo-logos/logos.js"></script>
+<script>const DASHBOARD_VERSION = "v1.2.1"; const DASHBOARD_UPDATED = "2026-10-27";</script>
+
 <style>
   @import url('https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=DM+Sans:wght@300;400;500;600;700&display=swap');
 
@@ -585,6 +587,26 @@ body {
     .tabs, .header { position: static; }
     .page { display: block !important; page-break-before: always; }
   }
+
+  .header-version {
+    position: absolute;
+    top: 10px;
+    right: 14px;
+    z-index: 5;
+    font-size: 0.68rem;
+    font-weight: 500;
+    letter-spacing: 0.02em;
+    color: rgba(255,255,255,0.78);
+    background: rgba(0,0,0,0.22);
+    border: 1px solid rgba(255,255,255,0.18);
+    border-radius: 999px;
+    padding: 4px 10px;
+    line-height: 1.2;
+    white-space: nowrap;
+    pointer-events: none;
+    font-family: 'DM Sans', sans-serif;
+  }
+  .header-version strong { color: #fff; font-weight: 600; }
 </style>
 <style id="responsive-overrides">
   @media (max-width: 768px) {
@@ -819,6 +841,7 @@ body {
 <body>
 
 <div class="header">
+    <div class="header-version" id="dash-version"><strong>v1.2.1</strong> · 2026-10-27</div>
   <div class="header-inner">
     <div class="header-left">
       <div class="header-title">
@@ -827,10 +850,10 @@ body {
       </div>
       <div class="header-quote">Computational analysis and support for high-throughput genomics — guiding design, QC, and insight across NYU Langone and beyond.</div>
       <div class="header-stats">
-        <div class="hstat"><div class="hstat-num">555</div><div class="hstat-label">Publications</div></div>
-        <div class="hstat"><div class="hstat-num">1.9×</div><div class="hstat-label">12-yr Growth</div></div>
-        <div class="hstat"><div class="hstat-num">4,897</div><div class="hstat-label">Co-authors</div></div>
-        <div class="hstat"><div class="hstat-num">50</div><div class="hstat-label">Pubs in 2026</div></div>
+        <div class="hstat"><div class="hstat-num">563</div><div class="hstat-label">Publications</div></div>
+        <div class="hstat"><div class="hstat-num">2.4×</div><div class="hstat-label">12-yr Growth</div></div>
+        <div class="hstat"><div class="hstat-num">4,926</div><div class="hstat-label">Co-authors</div></div>
+        <div class="hstat"><div class="hstat-num">58</div><div class="hstat-label">Pubs in 2026</div></div>
       </div>
     </div>
     <div class="header-visual" aria-hidden="true">
@@ -842,7 +865,7 @@ body {
     <span class="pip">·</span>
     <span>Published in <strong>Nature · Cell · Cancer Discovery</strong> &amp; 202 journals</span>
     <span class="pip">·</span>
-    <span><strong>194% output growth</strong> · 2015 → 2026</span>
+    <span><strong>241% output growth</strong> · 2015 → 2026</span>
     <span class="pip">·</span>
     <span><strong>Nat Commun</strong> top outlet · 35 papers</span>
   </div>
@@ -861,24 +884,24 @@ body {
 
 <div class="page active" id="page-overview">
   <div class="section-title">Research Output Overview</div>
-  <div class="section-sub">555 publications · 2015–2026 · NYU Applied Bioinformatics Laboratories</div>
+  <div class="section-sub">563 publications · 2015–2026 · NYU Applied Bioinformatics Laboratories</div>
 
   <div class="stat-grid">
     <div class="stat-card">
-      <div class="num">555</div>
+      <div class="num">563</div>
       <div class="label">Total Publications</div>
     </div>
     <div class="stat-card">
       <div class="num blue">90.8%</div>
-      <div class="label">Peer-Reviewed (504)</div>
+      <div class="label">Peer-Reviewed (511)</div>
     </div>
     <div class="stat-card">
-      <div class="num green">194%</div>
+      <div class="num green">241%</div>
       <div class="label">Output Growth 2016→2025</div>
-      <div style="font-size:0.68rem;color:#aaa;margin-top:6px;font-family:'DM Sans',sans-serif;">(50 − 17) ÷ 17 × 100</div>
+      <div style="font-size:0.68rem;color:#aaa;margin-top:6px;font-family:'DM Sans',sans-serif;">(58 − 17) ÷ 17 × 100</div>
     </div>
     <div class="stat-card">
-      <div class="num orange">50</div>
+      <div class="num orange">58</div>
       <div class="label">Publications in 2026</div>
     </div>
   </div>
@@ -903,7 +926,7 @@ body {
     <div class="card" style="flex:1 1 0;min-width:0;margin-bottom:0">
       <div class="card-title">Top Research Themes</div>
       <div style="font-size:0.7rem;color:#aaa;margin-bottom:4px">Click a bar to see year-by-year trend for that theme</div>
-      <div style="font-size:0.68rem;color:#bbb;margin-bottom:6px;line-height:1.45">Papers may be assigned to multiple themes; bar counts sum to more than 555 total publications.</div>
+      <div style="font-size:0.68rem;color:#bbb;margin-bottom:6px;line-height:1.45">Papers may be assigned to multiple themes; bar counts sum to more than 563 total publications.</div>
       <div class="chart-wrap" style="height:230px">
         <canvas id="overviewThemeBar"></canvas>
       </div>
@@ -1072,7 +1095,7 @@ body {
 
 <div class="page" id="page-network">
   <div class="section-title">Collaboration Networks</div>
-  <div class="section-sub">154 NYU lab affiliations across publications · 102 verified faculty labs with joint papers · 52 additional affiliations · 4,897 unique non-ABL co-authors · geographic reach</div>
+  <div class="section-sub">154 NYU lab affiliations across publications · 102 verified faculty labs with joint papers · 52 additional affiliations · 4,926 unique non-ABL co-authors · geographic reach</div>
 
   <!-- ── Key Stats ── -->
   <div class="stat-grid" style="grid-template-columns:repeat(4,1fr);margin-bottom:12px">
@@ -1094,7 +1117,7 @@ body {
     </div>
   </div>
   <div style="font-size:0.72rem;color:#888;margin-bottom:28px;line-height:1.55;max-width:920px">
-    <strong>Lab counts:</strong> 102 = verified NYU faculty labs with ≥1 joint publication · 154 = all NYU lab affiliations identified in PubMed across 555 papers (includes 52 additional affiliations not mapped to the verified roster).
+    <strong>Lab counts:</strong> 102 = verified NYU faculty labs with ≥1 joint publication · 154 = all NYU lab affiliations identified in PubMed across 563 papers (includes 52 additional affiliations not mapped to the verified roster).
   </div>
 
   <!-- ══ DEPT NETWORK ══ -->
@@ -1203,7 +1226,7 @@ body {
       <div id="us-map-tooltip-net" style="position:absolute;background:#1a1a2e;color:white;padding:9px 13px;border-radius:7px;font-size:0.78rem;pointer-events:none;opacity:0;transition:opacity 0.15s;font-family:'DM Sans',sans-serif;max-width:220px;line-height:1.5;z-index:10;white-space:normal;"></div>
     </div>
     <div style="display:flex;flex-wrap:wrap;gap:8px 16px;margin-top:12px;align-items:center;font-size:0.76rem;color:#444;">
-      <div class="legend-item"><div style="width:10px;height:10px;border-radius:50%;background:#57068C;display:inline-block;margin-right:5px;flex-shrink:0"></div>NYU Langone / ABL (555)</div>
+      <div class="legend-item"><div style="width:10px;height:10px;border-radius:50%;background:#57068C;display:inline-block;margin-right:5px;flex-shrink:0"></div>NYU Langone / ABL (563)</div>
       <div class="legend-item"><div style="width:10px;height:10px;border-radius:50%;background:#e63946;display:inline-block;margin-right:5px;flex-shrink:0"></div>Memorial Sloan Kettering (72)</div>
       <div class="legend-item"><div style="width:10px;height:10px;border-radius:50%;background:#7c3aed;display:inline-block;margin-right:5px;flex-shrink:0"></div>Harvard / Dana-Farber (61)</div>
       <div class="legend-item"><div style="width:10px;height:10px;border-radius:50%;background:#4361ee;display:inline-block;margin-right:5px;flex-shrink:0"></div>Weill Cornell Medicine (36)</div>
@@ -1222,14 +1245,14 @@ body {
     <div class="card-title">Co-Authorship Summary</div>
     <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-bottom:20px">
       <div style="background:#f8f5ff;border-radius:10px;padding:16px 20px;text-align:center;border:1.5px solid #e0d0ff">
-        <div style="font-size:1.6rem;font-weight:800;color:#57068C;line-height:1">4,897</div>
+        <div style="font-size:1.6rem;font-weight:800;color:#57068C;line-height:1">4,926</div>
         <div style="font-size:0.72rem;color:#888;margin-top:4px;text-transform:uppercase;letter-spacing:0.05em">Unique Co-authors</div>
         <div style="font-size:0.68rem;color:#bbb;margin-top:2px">Verified from PubMed TSV</div>
       </div>
       <div style="background:#f8f5ff;border-radius:10px;padding:16px 20px;text-align:center;border:1.5px solid #e0d0ff">
-        <div style="font-size:1.6rem;font-weight:800;color:#57068C;line-height:1">8,667</div>
+        <div style="font-size:1.6rem;font-weight:800;color:#57068C;line-height:1">8,767</div>
         <div style="font-size:0.72rem;color:#888;margin-top:4px;text-transform:uppercase;letter-spacing:0.05em">Author Appearances</div>
-        <div style="font-size:0.68rem;color:#bbb;margin-top:2px">All author slots across 555 papers</div>
+        <div style="font-size:0.68rem;color:#bbb;margin-top:2px">All author slots across 563 papers</div>
       </div>
       <div style="background:#f8f5ff;border-radius:10px;padding:16px 20px;text-align:center;border:1.5px solid #e0d0ff">
         <div style="font-size:1.6rem;font-weight:800;color:#57068C;line-height:1">17.8</div>
@@ -1257,10 +1280,10 @@ body {
 
 <div class="page" id="page-pcc">
   <div class="section-title">Perlmutter Cancer Center Collaborations</div>
-  <div class="section-sub">ABL collaboration with the NCI-designated Comprehensive Cancer Center at NYU · based on author analysis of all 555 publications · 2015–2026</div>
+  <div class="section-sub">ABL collaboration with the NCI-designated Comprehensive Cancer Center at NYU · based on author analysis of all 563 publications · 2015–2026</div>
 
   <!-- ── Key Stats ── -->
-  <div class="stat-grid" style="grid-template-columns:repeat(4,1fr);margin-bottom:24px">
+  <div class="stat-grid" style="grid-template-columns:repeat(5,1fr);margin-bottom:24px">
     <div class="stat-card" style="border-top:3px solid #e63946">
       <div class="num" id="pcc-stat-papers">—</div>
       <div class="label">Unique PCC Papers</div>
@@ -1277,15 +1300,47 @@ body {
       <div class="num orange" id="pcc-stat-programs">—</div>
       <div class="label">Scientific Programs Covered</div>
     </div>
+    <div class="stat-card" style="border-top:3px solid #7b2d8b">
+      <div class="num" id="pcc-stat-avg" style="color:#7b2d8b">—</div>
+      <div class="label">Avg PCC Papers / Year</div>
+    </div>
   </div>
 
   <div id="pcc-counting-note" style="font-size:0.74rem;color:#555;background:#f8f6ff;padding:11px 14px;border-radius:8px;border:1px solid #e0d0ff;margin-bottom:20px;line-height:1.55"></div>
+
+  <!-- ── PCC network + papers by year ── -->
+  <div class="grid-2" style="margin-bottom:24px">
+    <div class="card card-accent">
+      <div class="card-title">PCC Lab Collaboration Network</div>
+      <div style="font-size:0.75rem;color:#888;margin-bottom:10px">Top PCC labs co-authoring with ABL · node size = joint papers · color = scientific program · click a lab or link for papers (PubMed)</div>
+      <div id="pccLabNet-container" style="position:relative;height:340px;background:#fafafa;border-radius:8px;overflow:hidden">
+        <div class="dl-group"><button class="dl-btn" onclick="downloadSvgEl('pccLabNet-svg','ABL_PCC_lab_network')" title="Download as PNG"><svg viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M8 2v8M5 7l3 3 3-3" stroke="#555" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/><rect x="2" y="11" width="12" height="2" rx="1" stroke="#555" stroke-width="1.4" fill="none"/></svg></button></div>
+        <svg id="pccLabNet-svg" style="width:100%;height:100%"></svg>
+        <div id="pccLabNet-tooltip" style="position:absolute;pointer-events:none;opacity:0;background:#1a1a2e;color:#fff;padding:8px 10px;border-radius:6px;font-size:0.72rem;line-height:1.4;z-index:6;max-width:220px;box-shadow:0 4px 14px rgba(0,0,0,.25)"></div>
+      </div>
+      <div style="display:flex;flex-wrap:wrap;gap:8px 14px;margin-top:10px;font-size:0.68rem;color:#555">
+        <span><span style="display:inline-block;width:8px;height:8px;border-radius:50%;background:#e63946;margin-right:4px"></span>CCB</span>
+        <span><span style="display:inline-block;width:8px;height:8px;border-radius:50%;background:#4361ee;margin-right:4px"></span>CGD</span>
+        <span><span style="display:inline-block;width:8px;height:8px;border-radius:50%;background:#2dc653;margin-right:4px"></span>TI</span>
+        <span><span style="display:inline-block;width:8px;height:8px;border-radius:50%;background:#f4a261;margin-right:4px"></span>MEL</span>
+        <span><span style="display:inline-block;width:8px;height:8px;border-radius:50%;background:#7b2d8b;margin-right:4px"></span>ECC</span>
+      </div>
+    </div>
+    <div class="card card-accent-blue">
+      <div class="card-title">PCC vs Non-PCC Publications by Year</div>
+      <div style="font-size:0.75rem;color:#888;margin-bottom:10px">Stacked unique papers · click a year bar for papers &amp; PubMed links · dashed line = PCC average (<span id="pcc-avg-label">—</span>/yr)</div>
+      <div class="chart-wrap" style="height:340px">
+        <div class="dl-group"><button class="dl-btn" onclick="downloadCanvas('pccShareByYearChart','ABL_PCC_share_by_year')" title="Download as PNG"><svg viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M8 2v8M5 7l3 3 3-3" stroke="#555" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/><rect x="2" y="11" width="12" height="2" rx="1" stroke="#555" stroke-width="1.4" fill="none"/></svg></button></div>
+        <canvas id="pccShareByYearChart"></canvas>
+      </div>
+    </div>
+  </div>
 
   <!-- ── Row 1: Two pies ── -->
   <div class="grid-2" style="margin-bottom:24px">
     <div class="card card-accent">
       <div class="card-title">ABL Publications — PCC vs Non-PCC Labs</div>
-      <div style="font-size:0.75rem;color:#888;margin-bottom:10px">Share of 555 total ABL papers that include at least one PCC lab author</div>
+      <div style="font-size:0.75rem;color:#888;margin-bottom:10px">Share of 563 total ABL papers that include at least one PCC lab author</div>
       <div class="chart-wrap" style="height:280px">
         <div class="dl-group"><button class="dl-btn" onclick="downloadCanvas('pccSharePie','ABL_PCC_share')" title="Download as PNG"><svg viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M8 2v8M5 7l3 3 3-3" stroke="#555" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/><rect x="2" y="11" width="12" height="2" rx="1" stroke="#555" stroke-width="1.4" fill="none"/></svg></button></div>
         <canvas id="pccSharePie"></canvas>
@@ -1305,7 +1360,7 @@ body {
   <div class="grid-2" style="margin-bottom:24px">
     <div class="card card-accent">
       <div class="card-title">Top PCC Labs — Joint Publications with ABL</div>
-      <div style="font-size:0.75rem;color:#888;margin-bottom:10px">All author positions · unique color per lab</div>
+      <div style="font-size:0.75rem;color:#888;margin-bottom:10px">All author positions · unique color per lab · click a lab for papers (PubMed)</div>
       <div class="chart-wrap" style="height:560px">
         <div class="dl-group"><button class="dl-btn" onclick="downloadCanvas('pccLabsBar','ABL_PCC_labs_ranked')" title="Download as PNG"><svg viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M8 2v8M5 7l3 3 3-3" stroke="#555" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/><rect x="2" y="11" width="12" height="2" rx="1" stroke="#555" stroke-width="1.4" fill="none"/></svg></button></div>
         <canvas id="pccLabsBar"></canvas>
@@ -1381,8 +1436,8 @@ body {
           <button class="dl-btn" onclick="downloadElement('pcc-upset-wrap','ABL_PCC_upset')" title="Download as PNG"><svg viewBox="0 0 16 16" fill="none"><path d="M8 2v8M5 7l3 3 3-3" stroke="#555" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/><rect x="2" y="11" width="12" height="2" rx="1" stroke="#555" stroke-width="1.4" fill="none"/></svg></button>
         </div>
       </div>
-      <div id="pcc-upset-wrap" style="position:relative;overflow-x:auto;-webkit-overflow-scrolling:touch;background:#fafbfc;border:1px solid #f0f0f5;border-radius:8px;padding:14px 12px 18px">
-        <svg id="pcc-upset-svg" style="display:block"></svg>
+      <div id="pcc-upset-wrap" style="position:relative;overflow:hidden;background:#fff;border:1px solid #f0f0f5;border-radius:8px;padding:14px 12px 18px">
+        <svg id="pcc-upset-svg" style="display:block;width:100%;height:auto;max-width:100%;background:#fff"></svg>
         <div id="pcc-upset-tooltip" style="position:absolute;background:#1a1a2e;color:white;padding:8px 12px;border-radius:7px;font-size:0.76rem;pointer-events:none;opacity:0;transition:opacity 0.15s;max-width:240px;line-height:1.5;z-index:10;white-space:normal"></div>
       </div>
     </div>
@@ -1397,7 +1452,7 @@ body {
 
 </div>
 
-<div id="tooltip" class="tooltip"></div><div id="tooltip" class="tooltip"></div>
+<div id="tooltip" class="tooltip"></div>
 
 <script>
 // ─── DATA ────────────────────────────────────────────────────────────────────
@@ -1406,7 +1461,7 @@ const _sims = {};
 function _stopSim(key){if(_sims[key]){_sims[key].stop();delete _sims[key];}}
 
 const years = (typeof DERIVED !== "undefined" && DERIVED.years) ? DERIVED.years.slice() : [2015,2016,2017,2018,2019,2020,2021,2022,2023,2024,2025,2026];
-const pubsByYear = (typeof DERIVED !== "undefined" && DERIVED.pubsByYear) ? DERIVED.pubsByYear.slice() : [17,19,28,32,47,52,57,58,62,60,73,50];
+const pubsByYear = (typeof DERIVED !== "undefined" && DERIVED.pubsByYear) ? DERIVED.pubsByYear.slice() : [17,19,28,32,47,52,57,58,62,60,73,58];
 
 const members = {
   'Tsirigos':36.6,
@@ -1428,12 +1483,12 @@ const members = {
   'Dimartino':0.5
 };
 const memberCounts = {
-  'Tsirigos':203,
-  'Snuderl':87,
+  'Tsirigos':206,
+  'Snuderl':88,
   'Khodadadi-J.':92,
-  'Dolgalev':88,
-  'Serrano':58,
-  'Heguy':56,
+  'Dolgalev':90,
+  'Serrano':59,
+  'Heguy':57,
   'Vasudevaraja':47,
   'Coudray':42,
   'Hao':38,
@@ -1444,7 +1499,7 @@ const memberCounts = {
   'Maji':16,
   'Ziccheddu':9,
   'Ramaswami':8,
-  'Dimartino':3
+  'Dimartino':4
 };
 
 let themes = {};
@@ -1702,7 +1757,7 @@ function initOverviewCharts() {
 
 
   // Cumulative publications line chart
-  const cumulativePubs = (typeof DERIVED !== "undefined" && DERIVED.cumulativePubs) ? DERIVED.cumulativePubs.slice() : [17,36,64,96,143,195,252,310,372,432,505,555];
+  const cumulativePubs = (typeof DERIVED !== "undefined" && DERIVED.cumulativePubs) ? DERIVED.cumulativePubs.slice() : [17,36,64,96,143,195,252,310,372,432,505,563];
   if(document.getElementById('cumulativeChart'))
   new Chart(document.getElementById('cumulativeChart'), {
     type: 'line',
@@ -2415,7 +2470,7 @@ function initNetworkInteractions() {
         _statGrid([
           ['Joint Papers with ABL', String(pubs), '#57068C'],
           ['Department', dept, '#333'],
-          ['% of All ABL Papers', ((pubs/555)*100).toFixed(1)+'%', '#4361ee'],
+          ['% of All ABL Papers', ((pubs/563)*100).toFixed(1)+'%', '#4361ee'],
           ['Research Area', area, '#888']
         ]) +
         _pubFilterBtn(`View ${pubs} papers with ${labName}`, { pi: piKey }) +
@@ -2478,26 +2533,38 @@ function initPCCInteractions() {
     });
   }
 
-  // pccLabsBar — click lab → yearly breakdown from heatmap
+  // pccLabsBar — click lab → papers + PubMed links + yearly breakdown
   const lb = document.getElementById('pccLabsBar');
-  if (lb) {
-    _hint(lb, 'Click a lab for year-by-year breakdown');
+  if (lb && !lb.dataset.pccLabBound) {
+    lb.dataset.pccLabBound = '1';
+    _hint(lb, 'Click a lab for papers & PubMed links');
+    lb.style.cursor = 'pointer';
     lb.addEventListener('click', e => {
       const ch = Chart.getChart(lb);
+      if (!ch) return;
       const pts = ch.getElementsAtEventForMode(e,'nearest',{intersect:true},false);
       if (!pts.length) return;
       const li = pts[0].index;
       const labName = ch.data.labels[li];
       const total = ch.data.datasets[0].data[li];
-      const color = pccHeatColors[labName] || '#57068C';
-      const hdata = pccHeatData[labName] || [];
+      const color = (typeof pccHeatColors !== 'undefined' && pccHeatColors[labName]) ? pccHeatColors[labName] : '#57068C';
+      const hdata = _pccHeatRow(labName);
       const maxV = Math.max(...hdata, 1);
-      const node = nyuNodes.find(n=>n.id===labName);
+      const node = (typeof nyuNodes !== 'undefined') ? nyuNodes.find(n=>n.id===labName) : null;
       const dept = node?.dept || '—';
+      const papers = _papersForPi(labName).slice().sort((a, b) => (b.year || 0) - (a.year || 0));
       _showModal(MID, _mHead(MID, `${labName} Lab`, `${dept} · ${total} joint papers with ABL`, color) +
-        '<div style="font-size:0.78rem;font-weight:700;color:#555;margin-bottom:8px">Year-by-Year Activity</div>' +
+        _statGrid([
+          ['Joint Papers', String(total), color],
+          ['In Catalog', String(papers.length), '#57068C'],
+          ['Department', dept, '#4361ee'],
+          ['Years Active', String(hdata.filter(v => v > 0).length || '—'), '#888']
+        ]) +
+        '<div style="font-size:0.78rem;font-weight:700;color:#555;margin-bottom:4px">Recent papers · click title for PubMed</div>' +
+        _paperLinksBlock(papers, 10) +
+        '<div style="font-size:0.78rem;font-weight:700;color:#555;margin:12px 0 8px">Year-by-Year Activity · click a year for filtered papers</div>' +
         yrs.map((y,i)=>_bar(hdata[i]||0,maxV,color,String(y),`${hdata[i]||0} paper${(hdata[i]||0)!==1?'s':''}`, { pi: _piFilterKey(labName), year: String(y) })).join('') +
-        _pubFilterBtn(`View papers with ${labName}`, { pi: _piFilterKey(labName) }) +
+        _pubFilterBtn(`View all papers with ${labName}`, { pi: _piFilterKey(labName) }) +
         _pubFilterFooter());
     });
   }
@@ -2561,6 +2628,13 @@ function initPCCInteractions() {
           ['Members',String(pidx>=0?progMems[pidx]:'-'),'#333'],['Program',prog,'#555']]));
     });
   }
+
+  // pccShareByYearChart — click handled via Chart.js onClick → _openPccYearPapers
+  const yb = document.getElementById('pccShareByYearChart');
+  if (yb) {
+    _hint(yb, 'Click a year for papers & PubMed links');
+    yb.style.cursor = 'pointer';
+  }
 }
 
 
@@ -2574,7 +2648,7 @@ function initThemeCharts() {
   const catalog = (typeof publicationsCatalog !== 'undefined') ? publicationsCatalog : [];
   const taggedPapers = catalog.length
     ? catalog.filter(p => (p.themes || []).length > 0).length
-    : 555;
+    : 563;
 
   const rtTagged = document.getElementById('rtStatTagged');
   const rtThemes = document.getElementById('rtStatThemes');
@@ -3266,7 +3340,7 @@ function buildNetworkA() {
   svg.selectAll('*').remove();
 
   // Deep-copy nodes and links to prevent D3 from mutating global arrays
-  const ablHub = {id:'ABL',pubs:555,dept:'HUB',area:'ABL Core',fx:W/2,fy:H/2};
+  const ablHub = {id:'ABL',pubs:563,dept:'HUB',area:'ABL Core',fx:W/2,fy:H/2};
   const allNodes = [ablHub, ...nyuNodes.map(n=>({id:n.id,dept:n.dept,area:n.area,pubs:n.pubs}))];
   const spokeLinks = nyuNodes.map(n=>({source:'ABL',target:n.id,weight:n.pubs,type:'spoke'}));
   const crossLinks = nyuCrossLinks.map(l=>({...l,type:'cross'}));
@@ -3349,7 +3423,7 @@ function buildNetworkA() {
       _statGrid([
         ['Joint Papers with ABL', String(d.pubs), '#57068C'],
         ['Department', d.dept, col],
-        ['% of All ABL Papers', ((d.pubs / 555) * 100).toFixed(1) + '%', '#4361ee'],
+        ['% of All ABL Papers', ((d.pubs / 563) * 100).toFixed(1) + '%', '#4361ee'],
         ['Research Area', d.area, '#888']
       ]) +
       _pubFilterBtn(`View ${d.pubs} papers with ${d.id}`, { pi: _piFilterKey(d.id) }) +
@@ -3781,9 +3855,85 @@ function _fmtLegendCount(count, total) {
   return `${n} · ${pct}%`;
 }
 
+function _catalogPapers() {
+  return (typeof publicationsCatalog !== 'undefined' && publicationsCatalog) ? publicationsCatalog : [];
+}
+function _papersForPi(labId) {
+  const key = _piFilterKey(labId);
+  if (!key) return [];
+  const lower = key.toLowerCase();
+  return _catalogPapers().filter(p => (p.pis || []).some(pi => String(pi).toLowerCase() === lower));
+}
+function _papersForYearPcc(year, pccFlag) {
+  const y = String(year);
+  return _catalogPapers().filter(p => String(p.year) === y && (pccFlag === undefined || !!p.pcc === !!pccFlag));
+}
+function _papersSharedByPis(labA, labB) {
+  const a = _piFilterKey(labA).toLowerCase();
+  const b = _piFilterKey(labB).toLowerCase();
+  if (!a || !b) return [];
+  return _catalogPapers().filter(p => {
+    const pis = (p.pis || []).map(pi => String(pi).toLowerCase());
+    return pis.includes(a) && pis.includes(b);
+  });
+}
+function _paperLinksBlock(papers, limit) {
+  limit = limit == null ? 8 : limit;
+  const list = papers || [];
+  if (!list.length) {
+    return '<div style="font-size:0.74rem;color:#888;background:#fafafa;padding:10px;border-radius:8px;border:1px solid #eee">No matching papers found in the catalog.</div>';
+  }
+  const slice = list.slice(0, limit);
+  return `<div style="max-height:260px;overflow-y:auto;margin:6px 0 8px;border:1px solid #eee;border-radius:8px;background:#fff">` +
+    slice.map(p => {
+      const href = p.pmid ? `https://pubmed.ncbi.nlm.nih.gov/${p.pmid}/` : (p.doi ? `https://doi.org/${p.doi}` : '');
+      const title = _escPub(p.title || 'Untitled');
+      const meta = [p.journal, p.year, p.pmid ? `PMID ${p.pmid}` : ''].filter(Boolean).map(_escPub).join(' · ');
+      return `<div style="padding:8px 10px;border-bottom:1px solid #f0f0f5;font-size:0.74rem;line-height:1.35">
+        ${href
+          ? `<a href="${href}" target="_blank" rel="noopener" style="color:#57068C;font-weight:650;text-decoration:none">${title}</a>`
+          : `<span style="font-weight:650;color:#1a1a2e">${title}</span>`}
+        <div style="color:#888;margin-top:2px;font-size:0.7rem">${meta}</div>
+      </div>`;
+    }).join('') +
+    (list.length > limit
+      ? `<div style="padding:8px 10px;font-size:0.7rem;color:#888">${list.length - limit} more — open Publications for the full list</div>`
+      : '') +
+  `</div>`;
+}
+function _openPccYearPapers(yi, preferPcc) {
+  const MID = 'modal-pcc';
+  const yrs = (typeof pccYears !== 'undefined') ? pccYears : [];
+  if (!yrs.length || yi == null || yi < 0 || yi >= yrs.length) return;
+  const yr = yrs[yi];
+  const pccN = (typeof pccPapersPerYear !== 'undefined' ? pccPapersPerYear[yi] : 0) || 0;
+  const tot = (typeof totalPapersPerYear !== 'undefined' ? totalPapersPerYear[yi] : 0) || 0;
+  const nonN = Math.max(0, tot - pccN);
+  const pct = tot ? ((pccN / tot) * 100).toFixed(0) : 0;
+  const wantPcc = preferPcc !== false;
+  const focusPapers = _papersForYearPcc(yr, wantPcc).slice().sort((a, b) => (b.year || 0) - (a.year || 0) || a.n - b.n);
+  const allYearPapers = _papersForYearPcc(yr);
+  const focusLabel = wantPcc ? 'PCC' : 'Non-PCC';
+  _showModal(MID, _mHead(MID, `${yr} Publications`, `${tot} unique ABL papers · ${pct}% PCC`, '#57068C') +
+    _statGrid([
+      ['PCC Papers', String(pccN), '#e63946'],
+      ['Non-PCC Papers', String(nonN), '#888'],
+      ['Total', String(tot), '#57068C'],
+      ['PCC Share', pct + '%', '#4361ee']
+    ]) +
+    `<div style="font-size:0.78rem;font-weight:700;color:#555;margin-bottom:4px">${focusLabel} papers in ${yr} · click title for PubMed</div>` +
+    _paperLinksBlock(focusPapers, 12) +
+    `<div style="display:flex;flex-wrap:wrap;gap:8px;margin-top:4px">
+      ${_pubFilterBtn(`View ${pccN} PCC papers from ${yr}`, { year: String(yr), pcc: true })}
+      ${_pubFilterBtn(`View ${nonN} Non-PCC papers from ${yr}`, { year: String(yr), pcc: false })}
+      ${_pubFilterBtn(`View all ${tot} papers from ${yr}`, { year: String(yr) })}
+    </div>` +
+    `<div style="margin-top:8px;font-size:0.71rem;color:#888">${allYearPapers.length} catalog matches for ${yr}</div>`);
+}
+window._openPccYearPapers = _openPccYearPapers;
 function _pccSummary() {
   const base = (typeof PCC_SUMMARY !== 'undefined') ? { ...PCC_SUMMARY } : {
-    totalPapers: 555, pccPapers: 0, nonPccPapers: 555, pccSharePct: 0,
+    totalPapers: 563, pccPapers: 0, nonPccPapers: 563, pccSharePct: 0,
     pccLabsCollaborated: 52, nyuPccLabs: 52, nyuNonPccLabs: 47, programCount: 5
   };
   const catalog = (typeof publicationsCatalog !== 'undefined') ? publicationsCatalog : [];
@@ -3885,33 +4035,59 @@ function buildPccUpSetPlot() {
   const combos = _pccProgramCombos();
   if (!combos.length) return;
 
-  const margin = { top: 18, right: 36, bottom: 92, left: 148 };
-  const matrixRowH = 26;
-  const colW = 26;
-  const barMaxH = 155;
-  const setBarMaxW = 72;
+  // Fit to the card width (avoid horizontal scroll). Rebuild once if measured while hidden.
+  const avail = Math.max(wrap.clientWidth || 0, wrap.parentElement?.clientWidth || 0);
+  if (avail < 40) {
+    if (!wrap.dataset.upsetRetry) {
+      wrap.dataset.upsetRetry = '1';
+      requestAnimationFrame(() => { delete wrap.dataset.upsetRetry; buildPccUpSetPlot(); });
+    }
+    return;
+  }
+  delete wrap.dataset.upsetRetry;
+
   const nCols = combos.length;
+  const setBarMaxW = 58;
+  const setLabelW = 38;
+  const setCountW = 28;
+  const margin = { top: 14, right: 18, bottom: 78, left: setLabelW + setBarMaxW + setCountW + 22 };
+  const matrixRowH = 24;
+  const barMaxH = 140;
+  const usable = Math.max(180, avail - margin.left - margin.right - 4);
+  // Shrink column pitch so all combinations fit on one page width
+  const colW = Math.max(11, Math.min(26, Math.floor(usable / nCols)));
   const matrixH = programs.length * matrixRowH;
   const plotW = nCols * colW;
-  const W = Math.max(wrap.clientWidth || 720, margin.left + plotW + margin.right);
+  const W = margin.left + plotW + margin.right;
   const H = margin.top + matrixH + barMaxH + margin.bottom;
   const leftPad = margin.left;
   const topPad = margin.top;
   const barsTop = topPad + matrixH;
-  const labelBaseY = barsTop + barMaxH + 14;
-  const footerY = H - 14;
+  const labelBaseY = barsTop + barMaxH + 12;
+  const footerY = H - 12;
+  const barW = Math.max(6, Math.min(16, colW - 6));
+  const dotR = colW < 16 ? 4 : 5.2;
+  const setBarX = setLabelW + 4;
 
   const maxCombo = Math.max(...combos.map(c => c.papers.length), 1);
   const maxSet = Math.max(...programs.map(p => setSizes[p] || 0), 1);
 
-  svgEl.setAttribute('width', W);
-  svgEl.setAttribute('height', H);
   svgEl.setAttribute('viewBox', `0 0 ${W} ${H}`);
-  svgEl.style.minWidth = W + 'px';
+  svgEl.setAttribute('preserveAspectRatio', 'xMidYMid meet');
+  svgEl.removeAttribute('width');
+  svgEl.removeAttribute('height');
+  svgEl.style.width = '100%';
+  svgEl.style.height = 'auto';
+  svgEl.style.minWidth = '0';
+  svgEl.style.maxWidth = '100%';
+  svgEl.style.display = 'block';
+  svgEl.style.background = '#fff';
+  wrap.style.overflowX = 'hidden';
+  wrap.style.background = '#fff';
   const svg = d3.select(svgEl);
   svg.selectAll('*').remove();
 
-  svg.append('rect').attr('width', W).attr('height', H).attr('fill', '#fafbfc');
+  svg.append('rect').attr('width', W).attr('height', H).attr('fill', '#ffffff');
 
   programs.forEach((prog, ri) => {
     const y = topPad + ri * matrixRowH + matrixRowH / 2;
@@ -3919,24 +4095,25 @@ function buildPccUpSetPlot() {
     const count = setSizes[prog] || 0;
     const g = svg.append('g');
     g.append('text')
-      .attr('x', 10).attr('y', y + 4)
+      .attr('x', 8).attr('y', y + 4)
       .attr('font-size', 10).attr('font-weight', 700)
       .attr('fill', progColor[prog] || '#333')
       .text(prog);
     g.append('rect')
-      .attr('x', 42).attr('y', y - 7)
+      .attr('x', setBarX).attr('y', y - 7)
       .attr('width', Math.max(bw, 2)).attr('height', 14)
       .attr('fill', progColor[prog] || '#999').attr('opacity', 0.78).attr('rx', 2);
+    // Count sits just after its own bar — never on the divider line
     g.append('text')
-      .attr('x', 42 + setBarMaxW + 10).attr('y', y + 4)
-      .attr('font-size', 9).attr('fill', '#666').attr('text-anchor', 'start')
+      .attr('x', setBarX + Math.max(bw, 2) + 5).attr('y', y + 4)
+      .attr('font-size', 9).attr('fill', '#555').attr('font-weight', 600).attr('text-anchor', 'start')
       .text(count);
   });
 
   svg.append('line')
-    .attr('x1', leftPad - 10).attr('x2', leftPad - 10)
+    .attr('x1', leftPad - 8).attr('x2', leftPad - 8)
     .attr('y1', topPad - 6).attr('y2', barsTop + barMaxH + 6)
-    .attr('stroke', '#e0e0ea').attr('stroke-width', 1);
+    .attr('stroke', '#e8e8ee').attr('stroke-width', 1);
 
   combos.forEach((combo, ci) => {
     const x = leftPad + ci * colW + colW / 2;
@@ -3949,45 +4126,52 @@ function buildPccUpSetPlot() {
       const y2 = topPad + activeIdx[activeIdx.length - 1] * matrixRowH + matrixRowH / 2;
       svg.append('line')
         .attr('x1', x).attr('x2', x).attr('y1', y1).attr('y2', y2)
-        .attr('stroke', '#57068C').attr('stroke-width', 2.2).attr('stroke-linecap', 'round');
+        .attr('stroke', '#57068C').attr('stroke-width', colW < 16 ? 1.6 : 2.2).attr('stroke-linecap', 'round');
     }
 
     programs.forEach((prog, ri) => {
       const cy = topPad + ri * matrixRowH + matrixRowH / 2;
       if (combo.programs.includes(prog)) {
-        svg.append('circle').attr('cx', x).attr('cy', cy).attr('r', 5.5)
-          .attr('fill', progColor[prog] || '#57068C').attr('stroke', '#fff').attr('stroke-width', 1.2);
+        svg.append('circle').attr('cx', x).attr('cy', cy).attr('r', dotR)
+          .attr('fill', progColor[prog] || '#57068C').attr('stroke', '#fff').attr('stroke-width', 1);
       } else {
-        svg.append('circle').attr('cx', x).attr('cy', cy).attr('r', 2)
+        svg.append('circle').attr('cx', x).attr('cy', cy).attr('r', Math.max(1.5, dotR * 0.35))
           .attr('fill', '#e4e6ee');
       }
     });
 
     const hit = svg.append('rect')
-      .attr('x', x - colW / 2 + 1).attr('y', topPad - 4)
-      .attr('width', colW - 2).attr('height', matrixH + barMaxH + 8)
+      .attr('x', x - colW / 2 + 0.5).attr('y', topPad - 4)
+      .attr('width', Math.max(colW - 1, 8)).attr('height', matrixH + barMaxH + 8)
       .attr('fill', 'transparent').attr('class', 'pcc-upset-hit')
       .style('cursor', 'pointer');
 
     svg.append('rect')
-      .attr('x', x - 8).attr('y', barY)
-      .attr('width', 16).attr('height', Math.max(barH, 2))
+      .attr('x', x - barW / 2).attr('y', barY)
+      .attr('width', barW).attr('height', Math.max(barH, 2))
       .attr('fill', '#57068C').attr('opacity', 0.84).attr('rx', 2)
       .style('pointer-events', 'none');
 
-    if (barH >= 14) {
+    // Place count above the bar so it never overlaps the matrix connector line
+    if (colW >= 12) {
+      const n = combo.papers.length;
+      const above = barY - 4;
+      const inside = barH >= 18;
       svg.append('text')
-        .attr('x', x).attr('y', barY + barH / 2 + 3)
-        .attr('text-anchor', 'middle').attr('font-size', 8.5)
-        .attr('fill', '#fff').attr('font-weight', 700)
+        .attr('x', x)
+        .attr('y', inside ? (barY + 11) : above)
+        .attr('text-anchor', 'middle')
+        .attr('font-size', colW < 18 ? 7 : 8.5)
+        .attr('fill', inside ? '#fff' : '#57068C')
+        .attr('font-weight', 700)
         .style('pointer-events', 'none')
-        .text(combo.papers.length);
+        .text(n);
     }
 
-    if (combo.programs.length <= 4) {
+    if (combo.programs.length <= 4 && colW >= 14) {
       svg.append('text')
         .attr('x', x).attr('y', labelBaseY)
-        .attr('text-anchor', 'end').attr('font-size', 7.5)
+        .attr('text-anchor', 'end').attr('font-size', colW < 18 ? 6.5 : 7.5)
         .attr('fill', '#888').attr('transform', `rotate(-48, ${x}, ${labelBaseY})`)
         .style('pointer-events', 'none')
         .text(combo.programs.join('+'));
@@ -4024,6 +4208,24 @@ function buildPccUpSetPlot() {
     .attr('x', W - margin.right).attr('y', footerY)
     .attr('text-anchor', 'end').attr('font-size', 9).attr('fill', '#aaa')
     .text('Intersection bars → click for papers');
+
+  wrap.dataset.upsetLastW = String(avail);
+  if (!wrap._upsetResizeBound && typeof ResizeObserver !== 'undefined') {
+    wrap._upsetResizeBound = true;
+    let t = null;
+    const ro = new ResizeObserver(() => {
+      clearTimeout(t);
+      t = setTimeout(() => {
+        const page = document.getElementById('page-pcc');
+        if (!page || !page.classList.contains('active')) return;
+        const w = wrap.clientWidth || 0;
+        const prev = parseFloat(wrap.dataset.upsetLastW || '0');
+        if (w < 40 || Math.abs(w - prev) < 12) return;
+        buildPccUpSetPlot();
+      }, 140);
+    });
+    ro.observe(wrap);
+  }
 }
 function _updatePccCountingNotes() {
   const unique = _pccSummary().pccPapers;
@@ -4125,10 +4327,15 @@ function _showPccProgramBubbleModal(d) {
 function initPCCStatCards() {
   const s = _pccSummary();
   const set = (id, val) => { const el = document.getElementById(id); if (el) el.textContent = val; };
+  const years = (typeof pccYears !== 'undefined' && pccYears.length) ? pccYears.length : 12;
+  const avg = s.pccPapers / years;
   set('pcc-stat-papers', s.pccPapers);
   set('pcc-stat-share', s.pccSharePct + '%');
   set('pcc-stat-labs', s.pccLabsCollaborated);
   set('pcc-stat-programs', s.programCount);
+  set('pcc-stat-avg', avg.toFixed(1));
+  const avgLabel = document.getElementById('pcc-avg-label');
+  if (avgLabel) avgLabel.textContent = avg.toFixed(1);
   _updatePccCountingNotes();
   _updatePccUiLabels();
 }
@@ -4202,7 +4409,13 @@ function initPCCCharts() {
   const pccPalette = ['#e63946','#4361ee','#2dc653','#f4a261','#57068C','#0a9396','#e76f51','#2a9d8f','#264653','#f72585','#7209b7','#06d6a0','#118ab2','#ffd166','#43aa8b','#577590','#f3722c','#90be6d','#277da1','#f94144'];
   const sorted = [...pccLabData].sort((a,b)=>b.pubs-a.pubs).slice(0,20);
   const pccColors = sorted.map((_,i) => pccPalette[i % pccPalette.length]);
-  new Chart(document.getElementById('pccLabsBar'), {
+  const labsBarCanvas = document.getElementById('pccLabsBar');
+  if (labsBarCanvas) {
+    const prevLabs = Chart.getChart(labsBarCanvas);
+    if (prevLabs) prevLabs.destroy();
+    labsBarCanvas.style.cursor = 'pointer';
+  }
+  new Chart(labsBarCanvas, {
     type:'bar',
     data:{
       labels: sorted.map(d=>d.id),
@@ -4212,9 +4425,13 @@ function initPCCCharts() {
     },
     options:{
       indexAxis:'y', responsive:true, maintainAspectRatio:false,
+      onHover: (evt, els) => { if (evt.native && evt.native.target) evt.native.target.style.cursor = els.length ? 'pointer' : 'default'; },
       plugins:{
         legend:{ display:false },
-        tooltip:{ callbacks:{ label: ctx => ' ' + ctx.parsed.x + ' papers · ' + sorted[ctx.dataIndex].progFull }}
+        tooltip:{ callbacks:{
+          label: ctx => ' ' + ctx.parsed.x + ' papers · ' + sorted[ctx.dataIndex].progFull,
+          footer: () => 'Click for papers →'
+        }}
       },
       scales:{
         x:{ grid:{ color:'#f0f0f5' }, beginAtZero:true },
@@ -4747,23 +4964,321 @@ function initPCCCharts() {
     });
   }
 
+
+  // PCC vs Non-PCC by year (merged) — distinct color per year + average line
+  if (document.getElementById('pccShareByYearChart') && typeof pccPapersPerYear !== 'undefined' && typeof totalPapersPerYear !== 'undefined') {
+    const yrs = pccYears;
+    const pcc = pccPapersPerYear;
+    const non = totalPapersPerYear.map((t, i) => Math.max(0, t - pcc[i]));
+    const avg = pcc.reduce((a,b)=>a+b,0) / pcc.length;
+    const yearPalette = ['#e63946','#4361ee','#2dc653','#f4a261','#57068C','#0a9396','#e76f51','#7209b7','#06d6a0','#118ab2','#f72585','#264653'];
+    const pccColors = yrs.map((_, i) => yearPalette[i % yearPalette.length] + 'cc');
+    const pccBorders = yrs.map((_, i) => yearPalette[i % yearPalette.length]);
+    const yearCanvas = document.getElementById('pccShareByYearChart');
+    const prevYear = Chart.getChart(yearCanvas);
+    if (prevYear) prevYear.destroy();
+    yearCanvas.style.cursor = 'pointer';
+    new Chart(yearCanvas, {
+      data: {
+        labels: yrs,
+        datasets: [
+          {
+            type: 'bar',
+            label: 'PCC',
+            data: pcc,
+            backgroundColor: pccColors,
+            borderColor: pccBorders,
+            borderWidth: 1,
+            borderRadius: 3,
+            stack: 'y',
+            order: 2
+          },
+          {
+            type: 'bar',
+            label: 'Non-PCC',
+            data: non,
+            backgroundColor: '#e8e8eedd',
+            borderColor: '#d0d0d8',
+            borderWidth: 1,
+            borderRadius: 3,
+            stack: 'y',
+            order: 3
+          },
+          {
+            type: 'line',
+            label: 'PCC avg (' + avg.toFixed(1) + '/yr)',
+            data: yrs.map(() => avg),
+            borderColor: '#1a1a2e',
+            borderDash: [6, 4],
+            borderWidth: 2,
+            pointRadius: 0,
+            fill: false,
+            order: 1,
+            yAxisID: 'y'
+          }
+        ]
+      },
+      options: {
+        responsive: true, maintainAspectRatio: false,
+        onHover: (evt, els) => { if (evt.native && evt.native.target) evt.native.target.style.cursor = els.length ? 'pointer' : 'default'; },
+        onClick: (evt, els, chart) => {
+          if (!els.length) return;
+          const yi = els[0].index;
+          const ds = chart.data.datasets[els[0].datasetIndex];
+          const preferPcc = !(ds && ds.label === 'Non-PCC');
+          _openPccYearPapers(yi, preferPcc);
+        },
+        plugins: {
+          legend: { position: 'bottom', labels: { padding: 12, font: { size: 11 }, filter: item => item.text !== 'PCC' } },
+          tooltip: {
+            callbacks: {
+              label: ctx => {
+                if (ctx.dataset.type === 'line') return ' ' + ctx.dataset.label + ': ' + Number(ctx.parsed.y).toFixed(1);
+                return ' ' + ctx.dataset.label + ': ' + ctx.parsed.y;
+              },
+              footer: items => {
+                const bar = items.find(i => i.dataset.label === 'PCC') || items[0];
+                const i = bar.dataIndex;
+                const tot = totalPapersPerYear[i];
+                const pct = tot ? ((pcc[i] / tot) * 100).toFixed(0) : 0;
+                return ['PCC share: ' + pct + '% of ' + tot, 'Click bar for papers →'];
+              }
+            }
+          }
+        },
+        scales: {
+          x: { stacked: true, grid: { display: false }, ticks: { font: { size: 10 } } },
+          y: { stacked: true, beginAtZero: true, grid: { color: '#f0f0f5' }, ticks: { font: { size: 10 } }, title: { display: true, text: 'Publications', font: { size: 10 }, color: '#888' } }
+        }
+      }
+    });
+  }
+
+  try { buildPccLabNetwork(); } catch (e) { console.warn('PCC lab network:', e.message); }
+
   // 11. PCC heatmap
   try { buildPCCHeatmap(); } catch(e) { console.warn('PCC heatmap:', e.message); }
+}
+
+
+// ─── PCC lab collaboration network (PCC page) ────────────────────────────────
+function buildPccLabNetwork() {
+  const container = document.getElementById('pccLabNet-container');
+  const svgEl = document.getElementById('pccLabNet-svg');
+  if (!container || !svgEl || typeof pccLabData === 'undefined') return;
+  const W = container.clientWidth || 480, H = container.clientHeight || 340;
+  const svg = d3.select('#pccLabNet-svg').attr('width', W).attr('height', H);
+  if (typeof _stopSim === 'function') _stopSim('pccLabNet');
+  svg.selectAll('*').remove();
+
+  const labs = [...pccLabData].sort((a,b)=>b.pubs-a.pubs).slice(0, 22);
+  const labIds = new Set(labs.map(d => d.id));
+  const ablHub = { id: 'ABL', pubs: (typeof PCC_SUMMARY !== 'undefined' ? PCC_SUMMARY.pccPapers : 360), prog: 'HUB', fx: W/2, fy: H/2 };
+  const nodes = [ablHub, ...labs.map(d => ({ id: d.id, pubs: d.pubs, prog: d.prog, progFull: d.progFull || d.prog, dept: d.dept || '' }))];
+
+  const spokeLinks = labs.map(d => ({ source: 'ABL', target: d.id, weight: d.pubs, type: 'spoke' }));
+  const crossLinks = [];
+  const weights = (typeof DERIVED !== 'undefined' && DERIVED.crossWeights) ? DERIVED.crossWeights : {};
+  const seen = new Set();
+  Object.keys(weights).forEach(key => {
+    const parts = key.split('|');
+    if (parts.length !== 2) return;
+    const [a, b] = parts;
+    if (!labIds.has(a) || !labIds.has(b)) return;
+    const w = weights[key];
+    if (!w || w < 1) return;
+    const sk = a < b ? a + '|' + b : b + '|' + a;
+    if (seen.has(sk)) return;
+    seen.add(sk);
+    crossLinks.push({ source: a, target: b, weight: w, type: 'cross' });
+  });
+  // Fallback: nyuCrossLinks if DERIVED empty
+  if (!crossLinks.length && typeof nyuCrossLinks !== 'undefined') {
+    nyuCrossLinks.forEach(l => {
+      const a = l.source, b = l.target;
+      if (!labIds.has(a) || !labIds.has(b)) return;
+      crossLinks.push({ source: a, target: b, weight: l.weight || 1, type: 'cross' });
+    });
+  }
+
+  const allLinks = [...spokeLinks, ...crossLinks];
+  const nodeR = d => d.id === 'ABL' ? 22 : Math.max(7, Math.min(22, d.pubs * 0.35 + 5));
+  const fillOf = d => d.id === 'ABL' ? '#1a1a2e' : ((typeof progColor !== 'undefined' && progColor[d.prog]) || '#888');
+
+  const sim = d3.forceSimulation(nodes)
+    .force('link', d3.forceLink(allLinks).id(d => d.id)
+      .distance(d => d.type === 'cross' ? 48 : Math.max(55, 150 - d.weight * 2.2))
+      .strength(d => d.type === 'cross' ? 0.65 : 0.32))
+    .force('charge', d3.forceManyBody().strength(-180))
+    .force('center', d3.forceCenter(W/2, H/2))
+    .force('collision', d3.forceCollide().radius(d => nodeR(d) + 12));
+  if (typeof _sims !== 'undefined') _sims['pccLabNet'] = sim;
+  const hubN = nodes.find(d => d.id === 'ABL');
+  if (hubN) { hubN.fx = W/2; hubN.fy = H/2; }
+
+  const spokes = svg.append('g').selectAll('line').data(spokeLinks).join('line')
+    .attr('stroke', '#e8e8ee').attr('stroke-width', d => Math.max(0.5, Math.min(2.5, d.weight / 14)));
+
+  const crosses = svg.append('g').selectAll('line').data(crossLinks).join('line')
+    .attr('stroke', d => {
+      const sid = typeof d.source === 'object' ? d.source.id : d.source;
+      const n = labs.find(x => x.id === sid);
+      return n ? ((progColor && progColor[n.prog]) || '#aaa') : '#aaa';
+    })
+    .attr('stroke-width', d => d.weight >= 8 ? Math.min(5, d.weight * 0.4) : d.weight >= 3 ? 2 : 1)
+    .attr('stroke-opacity', d => d.weight >= 5 ? 0.8 : 0.45);
+
+  const nodeG = svg.append('g').selectAll('g')
+    .data(nodes.filter(d => d.id !== 'ABL')).join('g')
+    .call(typeof makeDrag === 'function' ? makeDrag(sim) : () => {});
+
+  nodeG.append('circle')
+    .attr('r', d => nodeR(d))
+    .attr('fill', d => fillOf(d))
+    .attr('fill-opacity', 0.88)
+    .attr('stroke', 'white').attr('stroke-width', 1.6)
+    .style('cursor', 'pointer');
+
+  nodeG.append('text')
+    .text(d => d.id.length > 8 ? d.id.slice(0, 7) + '…' : d.id)
+    .attr('text-anchor', 'middle').attr('dy', d => nodeR(d) + 11)
+    .attr('font-size', '8.5').attr('font-family', 'DM Sans,sans-serif')
+    .attr('fill', '#333').attr('font-weight', '600')
+    .style('pointer-events', 'none');
+
+  nodeG.append('text')
+    .text(d => d.pubs)
+    .attr('text-anchor', 'middle').attr('dy', '0.35em')
+    .attr('font-size', d => nodeR(d) > 12 ? '9' : '7')
+    .attr('font-family', 'DM Sans,sans-serif')
+    .attr('fill', 'white').attr('font-weight', '800')
+    .style('pointer-events', 'none');
+
+  const hub = svg.append('g');
+  hub.append('circle').attr('cx', W/2).attr('cy', H/2).attr('r', 22)
+    .attr('fill', '#1a1a2e').attr('stroke', '#e63946').attr('stroke-width', 2.5);
+  hub.append('text').attr('x', W/2).attr('y', H/2 - 3)
+    .attr('text-anchor', 'middle').attr('font-size', '9').attr('font-family', 'DM Sans,sans-serif')
+    .attr('fill', 'white').attr('font-weight', '800').text('ABL');
+  hub.append('text').attr('x', W/2).attr('y', H/2 + 8)
+    .attr('text-anchor', 'middle').attr('font-size', '6.5').attr('font-family', 'DM Sans,sans-serif')
+    .attr('fill', '#e63946').attr('font-weight', '700').text('PCC');
+
+  const tt = document.getElementById('pccLabNet-tooltip');
+  const MID = 'modal-pcc';
+  const showLabPapers = (labId, meta) => {
+    const papers = _papersForPi(labId).slice().sort((a, b) => (b.year || 0) - (a.year || 0));
+    const col = fillOf({ id: labId, prog: meta.prog });
+    _showModal(MID, _mHead(MID, `${labId} Lab`, `${meta.progFull || meta.prog || ''} · ${papers.length || meta.pubs || 0} joint papers with ABL`, col) +
+      _statGrid([
+        ['Joint Papers', String(papers.length || meta.pubs || 0), col],
+        ['Program', meta.prog || '—', '#57068C'],
+        ['Department', meta.dept || '—', '#4361ee'],
+        ['In Catalog', String(papers.length), '#888']
+      ]) +
+      '<div style="font-size:0.78rem;font-weight:700;color:#555;margin-bottom:4px">Recent papers · click title for PubMed</div>' +
+      _paperLinksBlock(papers, 10) +
+      _pubFilterBtn(`View all papers with ${labId}`, { pi: _piFilterKey(labId) }) +
+      _pubFilterFooter());
+  };
+
+  nodeG.on('mouseenter', (ev, d) => {
+    if (!tt) return;
+    tt.innerHTML = `<strong>${d.id}</strong> · ${d.prog}<br>${d.pubs} joint papers with ABL<br><span style="opacity:.75">${d.progFull || ''}</span><br><span style="opacity:.7;font-size:0.68rem">Click for papers →</span>`;
+    tt.style.opacity = '1';
+  }).on('mousemove', ev => {
+    if (!tt) return;
+    const r = container.getBoundingClientRect();
+    tt.style.left = (ev.clientX - r.left + 12) + 'px';
+    tt.style.top = (ev.clientY - r.top - 40) + 'px';
+  }).on('mouseleave', () => { if (tt) tt.style.opacity = '0'; })
+  .on('click', (ev, d) => {
+    ev.stopPropagation();
+    if (tt) tt.style.opacity = '0';
+    showLabPapers(d.id, d);
+  });
+
+  crosses.style('cursor', 'pointer')
+    .on('mouseenter', (ev, d) => {
+      if (!tt) return;
+      const a = typeof d.source === 'object' ? d.source.id : d.source;
+      const b = typeof d.target === 'object' ? d.target.id : d.target;
+      tt.innerHTML = `<strong>${a} ↔ ${b}</strong><br>${d.weight} shared paper${d.weight !== 1 ? 's' : ''}<br><span style="opacity:.7;font-size:0.68rem">Click for papers →</span>`;
+      tt.style.opacity = '1';
+    })
+    .on('mousemove', ev => {
+      if (!tt) return;
+      const r = container.getBoundingClientRect();
+      tt.style.left = (ev.clientX - r.left + 12) + 'px';
+      tt.style.top = (ev.clientY - r.top - 40) + 'px';
+    })
+    .on('mouseleave', () => { if (tt) tt.style.opacity = '0'; })
+    .on('click', (ev, d) => {
+      ev.stopPropagation();
+      if (tt) tt.style.opacity = '0';
+      const a = typeof d.source === 'object' ? d.source.id : d.source;
+      const b = typeof d.target === 'object' ? d.target.id : d.target;
+      const papers = _papersSharedByPis(a, b).slice().sort((x, y) => (y.year || 0) - (x.year || 0));
+      _showModal(MID, _mHead(MID, `${a} ↔ ${b}`, `${papers.length || d.weight} shared papers with ABL`, '#57068C') +
+        _statGrid([
+          ['Shared Papers', String(papers.length || d.weight), '#57068C'],
+          ['Lab A', a, '#4361ee'],
+          ['Lab B', b, '#0a9396'],
+          ['In Catalog', String(papers.length), '#888']
+        ]) +
+        '<div style="font-size:0.78rem;font-weight:700;color:#555;margin-bottom:4px">Shared papers · click title for PubMed</div>' +
+        _paperLinksBlock(papers, 10) +
+        _pubFilterBtn(`View papers with ${a}`, { pi: _piFilterKey(a) }) +
+        _pubFilterFooter());
+    });
+
+  spokes.style('cursor', 'pointer')
+    .on('mouseenter', (ev, d) => {
+      if (!tt) return;
+      const lab = typeof d.target === 'object' ? d.target.id : d.target;
+      tt.innerHTML = `<strong>ABL → ${lab}</strong><br>${d.weight} joint papers<br><span style="opacity:.7;font-size:0.68rem">Click for papers →</span>`;
+      tt.style.opacity = '1';
+    })
+    .on('mousemove', ev => {
+      if (!tt) return;
+      const r = container.getBoundingClientRect();
+      tt.style.left = (ev.clientX - r.left + 12) + 'px';
+      tt.style.top = (ev.clientY - r.top - 40) + 'px';
+    })
+    .on('mouseleave', () => { if (tt) tt.style.opacity = '0'; })
+    .on('click', (ev, d) => {
+      ev.stopPropagation();
+      if (tt) tt.style.opacity = '0';
+      const lab = typeof d.target === 'object' ? d.target.id : d.target;
+      const meta = labs.find(x => x.id === lab) || { id: lab, pubs: d.weight, prog: '' };
+      showLabPapers(lab, meta);
+    });
+
+  sim.on('tick', () => {
+    spokes.attr('x1', d => d.source.x).attr('y1', d => d.source.y).attr('x2', d => d.target.x).attr('y2', d => d.target.y);
+    crosses.attr('x1', d => d.source.x).attr('y1', d => d.source.y).attr('x2', d => d.target.x).attr('y2', d => d.target.y);
+    nodeG.attr('transform', d => {
+      const r = nodeR(d);
+      d.x = Math.max(r + 36, Math.min(W - r - 36, d.x));
+      d.y = Math.max(r + 2, Math.min(H - r - 14, d.y));
+      return `translate(${d.x},${d.y})`;
+    });
+  });
 }
 
 function buildUSMap(svgId, containerId, tooltipId) {
   svgId = svgId || 'us-map-svg'; containerId = containerId || 'us-map-container'; tooltipId = tooltipId || 'us-map-tooltip';
   const institutions = [
-    {name:'NYU Langone / ABL',          city:'New York, NY',           lat:40.742, lon:-73.974,  count:555, color:'#57068C'},
+    {name:'NYU Langone / ABL',          city:'New York, NY',           lat:40.742, lon:-73.974,  count:563, color:'#57068C'},
     {name:'Memorial Sloan Kettering',   city:'New York, NY',           lat:40.764, lon:-73.956,  count:81,  color:'#e63946'},
     {name:'Harvard / Dana-Farber',      city:'Boston, MA',             lat:42.337, lon:-71.107,  count:70,  color:'#7c3aed'},
-    {name:'Weill Cornell Medicine',     city:'New York, NY',           lat:40.765, lon:-73.954,  count:60,  color:'#4361ee'},
+    {name:'Weill Cornell Medicine',     city:'New York, NY',           lat:40.765, lon:-73.954,  count:62,  color:'#4361ee'},
     {name:'Columbia University',        city:'New York, NY',           lat:40.808, lon:-73.963,  count:42,  color:'#f4a261'},
     {name:'MD Anderson Cancer Center',  city:'Houston, TX',            lat:29.707, lon:-95.397,  count:39,  color:'#e76f51'},
-    {name:'Mount Sinai',                city:'New York, NY',           lat:40.790, lon:-73.952,  count:41,  color:'#0a9396'},
+    {name:'Mount Sinai',                city:'New York, NY',           lat:40.790, lon:-73.952,  count:42,  color:'#0a9396'},
     {name:'MIT / Broad Institute',      city:'Cambridge, MA',          lat:42.362, lon:-71.089,  count:38,  color:'#118ab2'},
     {name:'Johns Hopkins',              city:'Baltimore, MD',           lat:39.299, lon:-76.593,  count:26,  color:'#264653'},
-    {name:'NIH / NCI',                  city:'Bethesda, MD',           lat:38.999, lon:-77.102,  count:21,  color:'#2dc653'},
+    {name:'NIH / NCI',                  city:'Bethesda, MD',           lat:38.999, lon:-77.102,  count:22,  color:'#2dc653'},
     {name:'UPenn / Penn Medicine',      city:'Philadelphia, PA',       lat:39.950, lon:-75.196,  count:22,  color:'#f72585'},
     {name:'UC San Francisco',           city:'San Francisco, CA',      lat:37.763, lon:-122.458, count:8,  color:'#ffd166'},
     {name:'Stanford University',        city:'Stanford, CA',           lat:37.424, lon:-122.170, count:13,  color:'#43aa8b'},
@@ -4914,7 +5429,7 @@ function buildUSMap(svgId, containerId, tooltipId) {
       // Tooltip events
       circle.addEventListener('mouseenter', () => {
         tooltip.innerHTML = `<strong>${inst.name}</strong><br>${inst.city}<br>
-          <span style="opacity:0.85">${isHub ? '555 total ABL publications' : inst.count + ' papers with ABL authors'}</span>`;
+          <span style="opacity:0.85">${isHub ? '563 total ABL publications' : inst.count + ' papers with ABL authors'}</span>`;
         tooltip.style.opacity = '1';
       });
       circle.addEventListener('mousemove', e => {
@@ -4930,24 +5445,41 @@ function buildUSMap(svgId, containerId, tooltipId) {
 
 }
 
+function _pccHeatRow(lab) {
+  const years = (typeof pccYears !== 'undefined' && pccYears.length)
+    ? pccYears
+    : [2015, 2016, 2017, 2018, 2019, 2020, 2021, 2022, 2023, 2024, 2025, 2026];
+  const base = ((typeof pccHeatData !== 'undefined' && pccHeatData[lab]) ? pccHeatData[lab] : []).slice();
+  // Align to header years — older exports stopped at 2024 (10 cells vs 12 headers)
+  while (base.length < years.length) {
+    const y = years[base.length];
+    const n = _papersForPi(lab).filter(p => Number(p.year) === Number(y)).length;
+    base.push(n);
+  }
+  return base.slice(0, years.length);
+}
+
 function buildPCCHeatmap() {
   const labs = pccHeatLabs;
+  const years = (typeof pccYears !== 'undefined' && pccYears.length)
+    ? pccYears
+    : [2015, 2016, 2017, 2018, 2019, 2020, 2021, 2022, 2023, 2024, 2025, 2026];
   const labColors = labs.map(l => pccHeatColors[l] || '#aaa');
   const piKey = lab => _piFilterKey(lab);
 
-  let html = '<table style="border-collapse:collapse;width:100%;font-size:0.82rem;margin-top:4px">';
-  html += '<tr><th style="text-align:left;padding:6px 10px;color:#888;font-weight:500;border-bottom:2px solid #e8e8ee;min-width:150px">PCC Lab</th>';
-  pccYears.forEach(y => {
-    html += `<th style="text-align:center;padding:6px 8px;color:#888;font-weight:500;border-bottom:2px solid #e8e8ee">${y}</th>`;
+  let html = '<table style="border-collapse:collapse;width:100%;font-size:0.82rem;margin-top:4px;table-layout:fixed">';
+  html += '<tr><th style="text-align:left;padding:6px 10px;color:#888;font-weight:500;border-bottom:2px solid #e8e8ee;width:150px">PCC Lab</th>';
+  years.forEach(y => {
+    html += `<th style="text-align:center;padding:6px 4px;color:#888;font-weight:500;border-bottom:2px solid #e8e8ee">${y}</th>`;
   });
-  html += '<th style="text-align:center;padding:6px 8px;color:#888;font-weight:500;border-bottom:2px solid #e8e8ee">Total</th></tr>';
+  html += '<th style="text-align:center;padding:6px 8px;color:#888;font-weight:600;border-bottom:2px solid #e8e8ee;width:56px">Total</th></tr>';
 
   labs.forEach((lab, li) => {
-    const row = pccHeatData[lab];
-    const maxVal = Math.max(...row);
-    const total = row.reduce((a,b)=>a+b,0);
+    const row = _pccHeatRow(lab);
+    const maxVal = Math.max(...row, 0);
+    const total = row.reduce((a, b) => a + b, 0);
     const bc = labColors[li];
-    const r = parseInt(bc.slice(1,3),16), g = parseInt(bc.slice(3,5),16), b2 = parseInt(bc.slice(5,7),16);
+    const r = parseInt(bc.slice(1, 3), 16), g = parseInt(bc.slice(3, 5), 16), b2 = parseInt(bc.slice(5, 7), 16);
     const labFilter = { pi: piKey(lab) };
 
     html += `<tr>`;
@@ -4955,22 +5487,22 @@ function buildPCCHeatmap() {
       <span style="display:inline-block;width:9px;height:9px;border-radius:50%;background:${bc};margin-right:7px;vertical-align:middle;pointer-events:none"></span>
       <span style="pointer-events:none">${lab}</span></td>`;
     row.forEach((val, yi) => {
-      const alpha = maxVal > 0 ? val/maxVal : 0;
+      const alpha = maxVal > 0 ? val / maxVal : 0;
       const a = Math.round(alpha * 210);
-      const bg = `rgba(${r},${g},${b2},${(a/255).toFixed(2)})`;
+      const bg = `rgba(${r},${g},${b2},${(a / 255).toFixed(2)})`;
       const tc = alpha > 0.5 ? 'white' : '#333';
       const fw = val > 0 ? '700' : '400';
       if (val > 0) {
-        const cellFilter = { pi: piKey(lab), year: String(pccYears[yi]) };
-        html += `<td${_pubFilterAttr(cellFilter)} style="text-align:center;padding:7px 6px;background:${bg};color:${tc};border-bottom:1px solid #f0f0f5;border-right:1px solid #f0f0f5;font-weight:${fw};cursor:pointer">${val}</td>`;
+        const cellFilter = { pi: piKey(lab), year: String(years[yi]) };
+        html += `<td${_pubFilterAttr(cellFilter)} style="text-align:center;padding:7px 4px;background:${bg};color:${tc};border-bottom:1px solid #f0f0f5;border-right:1px solid #f0f0f5;font-weight:${fw};cursor:pointer">${val}</td>`;
       } else {
-        html += `<td style="text-align:center;padding:7px 6px;background:${bg};color:${tc};border-bottom:1px solid #f0f0f5;border-right:1px solid #f0f0f5;font-weight:${fw}">—</td>`;
+        html += `<td style="text-align:center;padding:7px 4px;background:${bg};color:${tc};border-bottom:1px solid #f0f0f5;border-right:1px solid #f0f0f5;font-weight:${fw}">—</td>`;
       }
     });
     if (total > 0) {
-      html += `<td${_pubFilterAttr(labFilter)} style="text-align:center;padding:7px 8px;font-weight:700;color:#333;border-bottom:1px solid #f0f0f5;cursor:pointer">${total}</td>`;
+      html += `<td${_pubFilterAttr(labFilter)} style="text-align:center;padding:7px 8px;font-weight:700;color:#333;border-bottom:1px solid #f0f0f5;border-left:2px solid #e8e8ee;cursor:pointer">${total}</td>`;
     } else {
-      html += `<td style="text-align:center;padding:7px 8px;font-weight:700;color:#333;border-bottom:1px solid #f0f0f5">0</td>`;
+      html += `<td style="text-align:center;padding:7px 8px;font-weight:700;color:#333;border-bottom:1px solid #f0f0f5;border-left:2px solid #e8e8ee">0</td>`;
     }
     html += '</tr>';
   });
@@ -4997,6 +5529,30 @@ function downloadCanvas(canvasId, filename) {
   link.href = out.toDataURL('image/png');
   link.click();
 }
+
+function downloadSvgEl(svgId, filename) {
+  const svg = document.getElementById(svgId);
+  if (!svg) return;
+  const wrap = svg.parentElement;
+  if (typeof html2canvas === 'function' && wrap) {
+    html2canvas(wrap, { backgroundColor: '#fafafa', scale: 2 }).then(canvas => {
+      const a = document.createElement('a');
+      a.download = (filename || svgId) + '.png';
+      a.href = canvas.toDataURL('image/png');
+      a.click();
+    });
+    return;
+  }
+  const serializer = new XMLSerializer();
+  const src = serializer.serializeToString(svg);
+  const blob = new Blob([src], { type: 'image/svg+xml;charset=utf-8' });
+  const a = document.createElement('a');
+  a.download = (filename || svgId) + '.svg';
+  a.href = URL.createObjectURL(blob);
+  a.click();
+  setTimeout(() => URL.revokeObjectURL(a.href), 1500);
+}
+
 
 function downloadElement(elementId, filename) {
   const el = document.getElementById(elementId);
@@ -5053,7 +5609,7 @@ function initPublications() {
   if (_pubData) { applyPubFilters(); return; }
   const list = document.getElementById('pub-list');
   if (!list) return;
-  list.innerHTML = '<div class="pub-loading">Loading 555 publications…</div>';
+  list.innerHTML = '<div class="pub-loading">Loading 563 publications…</div>';
   const useEmbedded = () => {
     _pubData = publicationsCatalog;
     _pubMeta = (typeof publicationsMeta !== 'undefined') ? publicationsMeta : null;
@@ -5184,6 +5740,9 @@ function goToPublications(filters) {
     } else if (filters.pccProgramCombo) {
       const want = String(filters.pccProgramCombo).split('+').sort().join('+');
       _pubExtraFilter = p => (p.pccPrograms || []).slice().sort().join('+') === want;
+    } else if (filters.pcc === true || filters.pcc === false) {
+      const wantPcc = filters.pcc === true;
+      _pubExtraFilter = p => !!p.pcc === wantPcc;
     }
     applyPubFilters();
     setTimeout(() => document.getElementById('pub-list')?.scrollIntoView({ behavior: 'smooth', block: 'start' }), 120);
@@ -5257,7 +5816,7 @@ function renderPublications() {
   const countEl = document.getElementById('pub-count');
   if (!list) return;
   const total = _pubFiltered.length;
-  const allTotal = (typeof publicationsMeta !== 'undefined' && publicationsMeta.total) ? publicationsMeta.total : 555;
+  const allTotal = (typeof publicationsMeta !== 'undefined' && publicationsMeta.total) ? publicationsMeta.total : 563;
   const pages = Math.ceil(total / _pubPerPage) || 1;
   if (_pubPage > pages) _pubPage = pages;
   const pageInfo = pages > 1 ? ` · page <strong>${_pubPage}</strong> of <strong>${pages}</strong>` : '';
@@ -5560,7 +6119,7 @@ window.addEventListener('load', () => {
 
 <div class="page" id="page-publications">
   <div class="section-title">Publications</div>
-  <div class="section-sub" id="pub-section-sub">All 555 ABL-affiliated publications · 2015–2026 · — with PCC co-authors (CCSG membership matched)</div>
+  <div class="section-sub" id="pub-section-sub">All 563 ABL-affiliated publications · 2015–2026 · — with PCC co-authors (CCSG membership matched)</div>
 
   <div class="pub-toolbar">
     <div class="pub-search-wrap">
@@ -5626,7 +6185,112 @@ window.addEventListener('load', () => {
 
     <!-- Slide viewport -->
     <div style="overflow:hidden;border-radius:14px">
-      <div id="hl-track" style="display:flex;transition:transform 0.4s cubic-bezier(.4,0,.2,1)"><!-- ══ SLIDE 1 ══ -->
+      <div id="hl-track" style="display:flex;transition:transform 0.4s cubic-bezier(.4,0,.2,1)">
+<!-- ══ SLIDE 1 ══ -->
+        <div class="hl-slide" style="min-width:100%;box-sizing:border-box">
+          <div class="card" style="padding:0;overflow:hidden;border-radius:14px;box-shadow:0 2px 16px rgba(0,0,0,0.07);margin:0">
+            <div style="height:5px;background:linear-gradient(90deg,#57068C,#4361ee,#06d6a0)"></div>
+            <div style="display:grid;grid-template-columns:1fr auto;gap:0">
+              <div style="padding:24px 26px 22px">
+                <div style="display:flex;align-items:center;gap:10px;margin-bottom:12px;flex-wrap:wrap">
+                  <span style="background:#57068C;color:white;font-size:0.68rem;font-weight:700;padding:3px 10px;border-radius:20px;letter-spacing:0.04em;text-transform:uppercase">Nature · 2026</span>
+                  <span style="font-size:0.72rem;color:#888;font-family:'DM Sans',sans-serif">PMID: 42816626</span>
+                  <span style="font-size:0.72rem;color:#57068C;font-weight:600">Khanna lab (w/ Tsirigos lab)</span>
+                </div>
+                <div style="font-size:1.05rem;font-weight:700;color:#1a1a2e;line-height:1.4;margin-bottom:5px">Type 2 Immune History Trains Lung Macrophages for Viral Disease Tolerance</div>
+                <div style="font-size:0.77rem;color:#666;margin-bottom:16px;font-style:italic">Damani-Yokota, Yordanov, Bernier, Sreenivasaiah et al. · Type 2 immune history trains lung macrophages for viral disease tolerance. Nature 2026</div>
+                <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px;margin-bottom:16px">
+                  <div style="background:#fdf4ff;border:1px solid #e8d5f5;border-radius:10px;padding:12px 13px">
+                    <div style="display:flex;align-items:center;gap:7px;margin-bottom:7px"><span style="font-size:0.95rem">⚠️</span><span style="font-size:0.7rem;font-weight:700;color:#57068C;text-transform:uppercase;letter-spacing:0.04em">The Problem</span></div>
+                    <ul style="margin:0;padding:0 0 0 13px;font-size:0.74rem;color:#444;line-height:1.6"><li>Severe respiratory viral disease often reflects immunopathology rather than inadequate pathogen control.</li><li>Whether prior immune history can prime lung-resident macrophages toward disease tolerance was unclear.</li></ul>
+                  </div>
+                  <div style="background:#f4f6ff;border:1px solid #d0d8f5;border-radius:10px;padding:12px 13px">
+                    <div style="display:flex;align-items:center;gap:7px;margin-bottom:7px"><span style="font-size:0.95rem">🔍</span><span style="font-size:0.7rem;font-weight:700;color:#4361ee;text-transform:uppercase;letter-spacing:0.04em">Why It Matters</span></div>
+                    <ul style="margin:0;padding:0 0 0 13px;font-size:0.74rem;color:#444;line-height:1.6"><li>Local trained immunity in tissue-resident macrophages offers a therapeutic entry point beyond antiviral clearance.</li><li>Understanding disease-tolerance programs could reshape strategies for severe inflammatory respiratory infections.</li></ul>
+                  </div>
+                  <div style="background:#f4fff8;border:1px solid #c8efd4;border-radius:10px;padding:12px 13px">
+                    <div style="display:flex;align-items:center;gap:7px;margin-bottom:7px"><span style="font-size:0.95rem">💡</span><span style="font-size:0.7rem;font-weight:700;color:#2dc653;text-transform:uppercase;letter-spacing:0.04em">Key Results</span></div>
+                    <ul style="margin:0;padding:0 0 0 13px;font-size:0.74rem;color:#444;line-height:1.6"><li>Type 2 history expands and epigenetically trains nerve- and airway-associated macrophages (NAMs).</li><li>Conditioned NAMs are necessary and sufficient for tolerance to lethal influenza without reducing viral burden.</li><li>An IL-4–STAT6–PPARγ / ARG1 chromatin program imprints a pro-resolving reparative NAM state.</li></ul>
+                  </div>
+                </div>
+                <div style="background:#f8f8fb;border:1px solid #e4e4ee;border-radius:10px;padding:14px 16px">
+                  <div style="font-size:0.68rem;font-weight:700;color:#888;text-transform:uppercase;letter-spacing:0.06em;margin-bottom:10px">Figure Highlights</div>
+                  <img src="ABL_Figures/Slide15_PMID-42816626.png?v=1793136764" alt="Figure highlights — 42816626" loading="lazy" style="width:100%;max-width:100%;height:auto;display:block;border-radius:6px;border:1px solid #e4e4ee"/>
+                </div>
+              </div>
+              <div style="width:160px;background:linear-gradient(170deg,#57068C 0%,#330662 100%);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:14px;padding:22px 16px">
+                <div style="width:72px;height:72px;border-radius:50%;border:3px solid rgba(255,255,255,0.35);overflow:hidden;flex-shrink:0"><img src="data:image/jpeg;base64,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" style="width:100%;height:100%;object-fit:cover;object-position:center 20%"/></div>
+                <div style="text-align:center"><div style="font-size:0.76rem;font-weight:700;color:white;line-height:1.3">Chaitra<br>Sreenivasaiah</div></div>
+                <div style="background:white;border-radius:8px;padding:7px 10px;text-align:center;width:100%">
+                  <div style="font-size:0.65rem;font-weight:800;color:#57068C;letter-spacing:0.02em">Nature</div>
+                  <div style="font-size:0.58rem;color:#888;margin-top:1px">Nature Portfolio</div>
+                </div>
+                <div style="text-align:center">
+                  <div style="font-size:0.6rem;color:rgba(255,255,255,0.5);text-transform:uppercase;letter-spacing:0.08em">PubMed ID</div>
+                  <div style="font-size:0.95rem;font-weight:800;color:white;line-height:1.2;margin-top:2px">42816626</div>
+                </div>
+                <div style="text-align:center">
+                  <div style="font-size:0.6rem;color:rgba(255,255,255,0.5);text-transform:uppercase;letter-spacing:0.08em">Lab</div>
+                  <div style="font-size:0.82rem;font-weight:700;color:white;line-height:1.2;margin-top:2px">Khanna lab</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div><!-- /slide 1 -->
+
+<!-- ══ SLIDE 2 ══ -->
+        <div class="hl-slide" style="min-width:100%;box-sizing:border-box">
+          <div class="card" style="padding:0;overflow:hidden;border-radius:14px;box-shadow:0 2px 16px rgba(0,0,0,0.07);margin:0">
+            <div style="height:5px;background:linear-gradient(90deg,#57068C,#4361ee,#06d6a0)"></div>
+            <div style="display:grid;grid-template-columns:1fr auto;gap:0">
+              <div style="padding:24px 26px 22px">
+                <div style="display:flex;align-items:center;gap:10px;margin-bottom:12px;flex-wrap:wrap">
+                  <span style="background:#57068C;color:white;font-size:0.68rem;font-weight:700;padding:3px 10px;border-radius:20px;letter-spacing:0.04em;text-transform:uppercase">Nat Genet · 2026</span>
+                  <span style="font-size:0.72rem;color:#888;font-family:'DM Sans',sans-serif">PMID: 42869988</span>
+                  <span style="font-size:0.72rem;color:#57068C;font-weight:600">Tsirigos &amp; Simeone labs</span>
+                </div>
+                <div style="font-size:1.05rem;font-weight:700;color:#1a1a2e;line-height:1.4;margin-bottom:5px">Clonal Heterogeneity in Human Pancreatic Ductal Adenocarcinoma and Its Impact on Tumor Progression</div>
+                <div style="font-size:0.77rem;color:#666;margin-bottom:16px;font-style:italic">Kalfakakou, Cameron, Kawaler et al. · Clonal heterogeneity in human pancreatic ductal adenocarcinoma and its impact on tumor progression. Nat Genet 2026</div>
+                <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px;margin-bottom:16px">
+                  <div style="background:#fdf4ff;border:1px solid #e8d5f5;border-radius:10px;padding:12px 13px">
+                    <div style="display:flex;align-items:center;gap:7px;margin-bottom:7px"><span style="font-size:0.95rem">⚠️</span><span style="font-size:0.7rem;font-weight:700;color:#57068C;text-transform:uppercase;letter-spacing:0.04em">The Problem</span></div>
+                    <ul style="margin:0;padding:0 0 0 13px;font-size:0.74rem;color:#444;line-height:1.6"><li>PDAC combines desmoplasia with deep cellular heterogeneity that bulk sequencing cannot resolve.</li><li>How genetically distinct clones, transcriptional states, and TME interactions drive progression remained unclear.</li></ul>
+                  </div>
+                  <div style="background:#f4f6ff;border:1px solid #d0d8f5;border-radius:10px;padding:12px 13px">
+                    <div style="display:flex;align-items:center;gap:7px;margin-bottom:7px"><span style="font-size:0.95rem">🔍</span><span style="font-size:0.7rem;font-weight:700;color:#4361ee;text-transform:uppercase;letter-spacing:0.04em">Why It Matters</span></div>
+                    <ul style="margin:0;padding:0 0 0 13px;font-size:0.74rem;color:#444;line-height:1.6"><li>Mapping clone-specific programs reveals how genomic dosage and spatial niche shape metastasis risk.</li><li>Identifying drivers of classical-to-basal transitions opens avenues to target clonal evolution therapeutically.</li></ul>
+                  </div>
+                  <div style="background:#f4fff8;border:1px solid #c8efd4;border-radius:10px;padding:12px 13px">
+                    <div style="display:flex;align-items:center;gap:7px;margin-bottom:7px"><span style="font-size:0.95rem">💡</span><span style="font-size:0.7rem;font-weight:700;color:#2dc653;text-transform:uppercase;letter-spacing:0.04em">Key Results</span></div>
+                    <ul style="margin:0;padding:0 0 0 13px;font-size:0.74rem;color:#444;line-height:1.6"><li>scRNA-seq of 62 tumors (443k cells) + spatial data maps coexisting neoplastic clones and clone–TME interactions.</li><li>Focal 8q24 (MYC) amplification links to classical→basal transitions with depleted immune programs.</li><li>Dispersed EMT/immune-suppressive clones track with metastatic potential and lymph-node colonization.</li></ul>
+                  </div>
+                </div>
+                <div style="background:#f8f8fb;border:1px solid #e4e4ee;border-radius:10px;padding:14px 16px">
+                  <div style="font-size:0.68rem;font-weight:700;color:#888;text-transform:uppercase;letter-spacing:0.06em;margin-bottom:10px">Figure Highlights</div>
+                  <img src="ABL_Figures/Slide16_PMID-42869988.png?v=1793136793" alt="Figure highlights — 42869988" loading="lazy" style="width:100%;max-width:100%;height:auto;display:block;border-radius:6px;border:1px solid #e4e4ee"/>
+                </div>
+              </div>
+              <div style="width:160px;background:linear-gradient(170deg,#57068C 0%,#330662 100%);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:14px;padding:22px 16px">
+                <div style="width:72px;height:72px;border-radius:50%;border:3px solid rgba(255,255,255,0.35);overflow:hidden;flex-shrink:0"><img src="data:image/jpeg;base64,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" style="width:100%;height:100%;object-fit:cover;object-position:center 20%"/></div>
+                <div style="text-align:center"><div style="font-size:0.76rem;font-weight:700;color:white;line-height:1.3">Daniel C<br>Cameron</div></div>
+                <div style="background:white;border-radius:8px;padding:7px 10px;text-align:center;width:100%">
+                  <div style="font-size:0.65rem;font-weight:800;color:#57068C;letter-spacing:0.02em">Nat Genet</div>
+                  <div style="font-size:0.58rem;color:#888;margin-top:1px">Nature Portfolio</div>
+                </div>
+                <div style="text-align:center">
+                  <div style="font-size:0.6rem;color:rgba(255,255,255,0.5);text-transform:uppercase;letter-spacing:0.08em">PubMed ID</div>
+                  <div style="font-size:0.95rem;font-weight:800;color:white;line-height:1.2;margin-top:2px">42869988</div>
+                </div>
+                <div style="text-align:center">
+                  <div style="font-size:0.6rem;color:rgba(255,255,255,0.5);text-transform:uppercase;letter-spacing:0.08em">Lab</div>
+                  <div style="font-size:0.82rem;font-weight:700;color:white;line-height:1.2;margin-top:2px">Tsirigos lab</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div><!-- /slide 2 -->
+
+<!-- ══ SLIDE 3 ══ -->
         <div class="hl-slide" style="min-width:100%;box-sizing:border-box">
           <div class="card" style="padding:0;overflow:hidden;border-radius:14px;box-shadow:0 2px 16px rgba(0,0,0,0.07);margin:0">
             <div style="height:5px;background:linear-gradient(90deg,#57068C,#4361ee,#06d6a0)"></div>
@@ -5676,9 +6340,9 @@ window.addEventListener('load', () => {
               </div>
             </div>
           </div>
-        </div><!-- /slide 1 -->
+        </div><!-- /slide 3 -->
 
-        <!-- ══ SLIDE 2 ══ -->
+<!-- ══ SLIDE 4 ══ -->
         <div class="hl-slide" style="min-width:100%;box-sizing:border-box">
           <div class="card" style="padding:0;overflow:hidden;border-radius:14px;box-shadow:0 2px 16px rgba(0,0,0,0.07);margin:0">
             <div style="height:5px;background:linear-gradient(90deg,#57068C,#4361ee,#06d6a0)"></div>
@@ -5720,7 +6384,7 @@ window.addEventListener('load', () => {
                 <!-- Figure panel -->
                 <div style="background:#f8f8fb;border:1px solid #e4e4ee;border-radius:10px;padding:14px 16px">
                   <div style="font-size:0.68rem;font-weight:700;color:#888;text-transform:uppercase;letter-spacing:0.06em;margin-bottom:10px">Figure Highlights</div>
-                  <img src="ABL_Figures/Slide2_PMID-41702399.png?v=1780081280" alt="Figure highlights — 41702399" loading="lazy" style="width:100%;max-width:100%;height:auto;display:block;border-radius:6px;border:1px solid #e4e4ee"/>
+                  <img src="ABL_Figures/Slide2_PMID-41702399.png?v=1793135510" alt="Figure highlights — 41702399" loading="lazy" style="width:100%;max-width:100%;height:auto;display:block;border-radius:6px;border:1px solid #e4e4ee"/>
                 </div>
               </div>
 
@@ -5744,9 +6408,9 @@ window.addEventListener('load', () => {
 
             </div>
           </div>
-        </div><!-- /slide 2 -->
+        </div><!-- /slide 4 -->
 
-        <!-- ══ SLIDE 3 ══ -->
+<!-- ══ SLIDE 5 ══ -->
         <div class="hl-slide" style="min-width:100%;box-sizing:border-box">
           <div class="card" style="padding:0;overflow:hidden;border-radius:14px;box-shadow:0 2px 16px rgba(0,0,0,0.07);margin:0">
             <div style="height:5px;background:linear-gradient(90deg,#57068C,#4361ee,#06d6a0)"></div>
@@ -5796,9 +6460,9 @@ window.addEventListener('load', () => {
               </div>
             </div>
           </div>
-        </div><!-- /slide 3 -->
+        </div><!-- /slide 5 -->
 
-        <!-- ══ SLIDE 4 ══ -->
+<!-- ══ SLIDE 6 ══ -->
         <div class="hl-slide" style="min-width:100%;box-sizing:border-box">
           <div class="card" style="padding:0;overflow:hidden;border-radius:14px;box-shadow:0 2px 16px rgba(0,0,0,0.07);margin:0">
             <div style="height:5px;background:linear-gradient(90deg,#57068C,#4361ee,#06d6a0)"></div>
@@ -5848,9 +6512,9 @@ window.addEventListener('load', () => {
               </div>
             </div>
           </div>
-        </div><!-- /slide 4 -->
+        </div><!-- /slide 6 -->
 
-        <!-- ══ SLIDE 5 ══ -->
+<!-- ══ SLIDE 7 ══ -->
         <div class="hl-slide" style="min-width:100%;box-sizing:border-box">
           <div class="card" style="padding:0;overflow:hidden;border-radius:14px;box-shadow:0 2px 16px rgba(0,0,0,0.07);margin:0">
             <div style="height:5px;background:linear-gradient(90deg,#57068C,#4361ee,#06d6a0)"></div>
@@ -5900,9 +6564,9 @@ window.addEventListener('load', () => {
               </div>
             </div>
           </div>
-        </div><!-- /slide 5 -->
+        </div><!-- /slide 7 -->
 
-        <!-- ══ SLIDE 6 ══ -->
+<!-- ══ SLIDE 8 ══ -->
         <div class="hl-slide" style="min-width:100%;box-sizing:border-box">
           <div class="card" style="padding:0;overflow:hidden;border-radius:14px;box-shadow:0 2px 16px rgba(0,0,0,0.07);margin:0">
             <div style="height:5px;background:linear-gradient(90deg,#57068C,#4361ee,#06d6a0)"></div>
@@ -5968,9 +6632,9 @@ window.addEventListener('load', () => {
 
             </div>
           </div>
-        </div><!-- /slide 6 -->
+        </div><!-- /slide 8 -->
 
-        <!-- ══ SLIDE 7 ══ -->
+<!-- ══ SLIDE 9 ══ -->
         <div class="hl-slide" style="min-width:100%;box-sizing:border-box">
           <div class="card" style="padding:0;overflow:hidden;border-radius:14px;box-shadow:0 2px 16px rgba(0,0,0,0.07);margin:0">
             <div style="height:5px;background:linear-gradient(90deg,#57068C,#4361ee,#06d6a0)"></div>
@@ -6020,9 +6684,9 @@ window.addEventListener('load', () => {
               </div>
             </div>
           </div>
-        </div><!-- /slide 7 -->
+        </div><!-- /slide 9 -->
 
-        <!-- ══ SLIDE 8 ══ -->
+<!-- ══ SLIDE 10 ══ -->
         <div class="hl-slide" style="min-width:100%;box-sizing:border-box">
           <div class="card" style="padding:0;overflow:hidden;border-radius:14px;box-shadow:0 2px 16px rgba(0,0,0,0.07);margin:0">
             <div style="height:5px;background:linear-gradient(90deg,#57068C,#4361ee,#06d6a0)"></div>
@@ -6072,9 +6736,9 @@ window.addEventListener('load', () => {
               </div>
             </div>
           </div>
-        </div><!-- /slide 8 -->
+        </div><!-- /slide 10 -->
 
-        <!-- ══ SLIDE 9 ══ -->
+<!-- ══ SLIDE 11 ══ -->
         <div class="hl-slide" style="min-width:100%;box-sizing:border-box">
           <div class="card" style="padding:0;overflow:hidden;border-radius:14px;box-shadow:0 2px 16px rgba(0,0,0,0.07);margin:0">
             <div style="height:5px;background:linear-gradient(90deg,#57068C,#4361ee,#06d6a0)"></div>
@@ -6124,9 +6788,9 @@ window.addEventListener('load', () => {
               </div>
             </div>
           </div>
-        </div><!-- /slide 9 -->
+        </div><!-- /slide 11 -->
 
-        <!-- ══ SLIDE 10 ══ -->
+<!-- ══ SLIDE 12 ══ -->
         <div class="hl-slide" style="min-width:100%;box-sizing:border-box">
           <div class="card" style="padding:0;overflow:hidden;border-radius:14px;box-shadow:0 2px 16px rgba(0,0,0,0.07);margin:0">
             <div style="height:5px;background:linear-gradient(90deg,#57068C,#4361ee,#06d6a0)"></div>
@@ -6176,9 +6840,9 @@ window.addEventListener('load', () => {
               </div>
             </div>
           </div>
-        </div><!-- /slide 10 -->
+        </div><!-- /slide 12 -->
 
-        <!-- ══ SLIDE 11 ══ -->
+<!-- ══ SLIDE 13 ══ -->
         <div class="hl-slide" style="min-width:100%;box-sizing:border-box">
           <div class="card" style="padding:0;overflow:hidden;border-radius:14px;box-shadow:0 2px 16px rgba(0,0,0,0.07);margin:0">
             <div style="height:5px;background:linear-gradient(90deg,#57068C,#4361ee,#06d6a0)"></div>
@@ -6228,9 +6892,9 @@ window.addEventListener('load', () => {
               </div>
             </div>
           </div>
-        </div><!-- /slide 11 -->
+        </div><!-- /slide 13 -->
 
-        <!-- ══ SLIDE 12 ══ -->
+<!-- ══ SLIDE 14 ══ -->
         <div class="hl-slide" style="min-width:100%;box-sizing:border-box">
           <div class="card" style="padding:0;overflow:hidden;border-radius:14px;box-shadow:0 2px 16px rgba(0,0,0,0.07);margin:0">
             <div style="height:5px;background:linear-gradient(90deg,#57068C,#4361ee,#06d6a0)"></div>
@@ -6280,9 +6944,9 @@ window.addEventListener('load', () => {
               </div>
             </div>
           </div>
-        </div><!-- /slide 12 -->
+        </div><!-- /slide 14 -->
 
-        <!-- ══ SLIDE 13 ══ -->
+<!-- ══ SLIDE 15 ══ -->
         <div class="hl-slide" style="min-width:100%;box-sizing:border-box">
           <div class="card" style="padding:0;overflow:hidden;border-radius:14px;box-shadow:0 2px 16px rgba(0,0,0,0.07);margin:0">
             <div style="height:5px;background:linear-gradient(90deg,#57068C,#4361ee,#06d6a0)"></div>
@@ -6332,9 +6996,9 @@ window.addEventListener('load', () => {
               </div>
             </div>
           </div>
-        </div><!-- /slide 13 -->
+        </div><!-- /slide 15 -->
 
-        <!-- ══ SLIDE 14 ══ -->
+<!-- ══ SLIDE 16 ══ -->
         <div class="hl-slide" style="min-width:100%;box-sizing:border-box">
           <div class="card" style="padding:0;overflow:hidden;border-radius:14px;box-shadow:0 2px 16px rgba(0,0,0,0.07);margin:0">
             <div style="height:5px;background:linear-gradient(90deg,#57068C,#4361ee,#06d6a0)"></div>
@@ -6384,9 +7048,9 @@ window.addEventListener('load', () => {
               </div>
             </div>
           </div>
-        </div><!-- /slide 14 -->
+        </div><!-- /slide 16 -->
 
-      </div><!-- /hl-track -->
+</div><!-- /hl-track -->
     </div><!-- /viewport -->
 
     <!-- Arrow: Next -->
@@ -6796,7 +7460,7 @@ window.addEventListener('load', () => {
     <rect x="5" y="316" width="188" height="158" rx="8" fill="white" stroke="#e8e8ee" stroke-width="1.5" filter="url(#rcs)"/>
     <rect x="5" y="316" width="5" height="158" rx="2" fill="#57068C"/>
     <text x="15" y="338" font-size="11" font-weight="700" fill="#1a1a2e" font-family="DM Sans,Arial,sans-serif">&#x1F4C4; Publications</text>
-    <text x="15" y="356" font-size="10" fill="#444" font-family="DM Sans,Arial,sans-serif">&#x2713; 555 papers (2015&#x2013;2026)</text>
+    <text x="15" y="356" font-size="10" fill="#444" font-family="DM Sans,Arial,sans-serif">&#x2713; 563 papers (2015&#x2013;2026)</text>
     <text x="15" y="370" font-size="10" fill="#444" font-family="DM Sans,Arial,sans-serif">&#x2713; 73 papers in 2025</text>
     <text x="15" y="384" font-size="10" fill="#444" font-family="DM Sans,Arial,sans-serif">&#x2713; 154 NYU lab affiliations</text>
     <text x="15" y="398" font-size="10" fill="#444" font-family="DM Sans,Arial,sans-serif">&#x2713; 102 verified faculty labs</text>
@@ -7023,7 +7687,7 @@ window.addEventListener('load', () => {
         <div style="font-size:2.2rem">📚</div>
         <div>
           <div style="font-size:0.65rem;color:#aaa;text-transform:uppercase;letter-spacing:0.08em">PubMed Collection</div>
-          <div style="font-weight:800;font-size:1.3rem;color:#57068C;font-family:'DM Serif Display',serif;line-height:1.1">555</div>
+          <div style="font-weight:800;font-size:1.3rem;color:#57068C;font-family:'DM Serif Display',serif;line-height:1.1">563</div>
           <div style="font-size:0.72rem;color:#888">papers · 2015–2026</div>
         </div>
       </div>
@@ -7089,11 +7753,7 @@ window.addEventListener('load', () => {
           <div style="width:88px;height:88px;border-radius:50%;overflow:hidden;border:3px solid #118ab2;box-shadow:0 2px 10px #118ab244"><img src="data:image/jpeg;base64,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" style="width:100%;height:100%;object-fit:cover;object-position:center 20%"/></div>
           <div style="text-align:center;font-size:0.72rem;font-weight:600;color:#1a1a2e;line-height:1.35">Tamara<br>Mestvirishvili</div>
         </div>
-        <div style="display:flex;flex-direction:column;align-items:center;gap:8px">
-          <div style="width:88px;height:88px;border-radius:50%;overflow:hidden;border:3px solid #06d6a0;box-shadow:0 2px 10px #06d6a044"><img src="data:image/jpeg;base64,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" style="width:100%;height:100%;object-fit:cover;object-position:center 20%"/></div>
-          <div style="text-align:center;font-size:0.72rem;font-weight:600;color:#1a1a2e;line-height:1.35">Javier<br>Rodriguez-Hernaez</div>
-        </div>
-        <div style="display:flex;flex-direction:column;align-items:center;gap:8px">
+                <div style="display:flex;flex-direction:column;align-items:center;gap:8px">
           <div style="width:88px;height:88px;border-radius:50%;overflow:hidden;border:3px solid #ffd166;box-shadow:0 2px 10px #ffd16644"><img src="data:image/jpeg;base64,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" style="width:100%;height:100%;object-fit:cover;object-position:center 20%"/></div>
           <div style="text-align:center;font-size:0.72rem;font-weight:600;color:#1a1a2e;line-height:1.35">Jonathan<br>Serrano</div>
         </div>
@@ -7161,6 +7821,10 @@ window.addEventListener('load', () => {
         <div style="display:flex;flex-direction:column;align-items:center;gap:8px">
           <div style="width:88px;height:88px;border-radius:50%;overflow:hidden;border:3px solid #f3722c;box-shadow:0 2px 10px #f3722c44"><img src="_photos/aleksandr-prystupa.jpg" alt="Aleksandr Prystupa" style="width:100%;height:100%;object-fit:cover;object-position:center 20%"/></div>
           <div style="text-align:center;font-size:0.72rem;font-weight:600;color:#1a1a2e;line-height:1.35">Aleksandr<br>Prystupa</div>
+        </div>
+        <div style="display:flex;flex-direction:column;align-items:center;gap:8px">
+          <div style="width:88px;height:88px;border-radius:50%;overflow:hidden;border:3px solid #f3722c;box-shadow:0 2px 10px #f3722c44"><img src="data:image/jpeg;base64,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" style="width:100%;height:100%;object-fit:cover;object-position:center 20%"/></div>
+          <div style="text-align:center;font-size:0.72rem;font-weight:600;color:#1a1a2e;line-height:1.35">Javier<br>Rodriguez-Hernaez</div>
         </div>
         <div style="display:flex;flex-direction:column;align-items:center;gap:8px">
           <div style="width:88px;height:88px;border-radius:50%;overflow:hidden;border:3px solid #f3722c;box-shadow:0 2px 10px #f3722c44;background:#fff7f2;display:flex;align-items:center;justify-content:center;font-family:'DM Sans',sans-serif;font-weight:700;color:#c2410c;font-size:1.15rem">GS</div>
